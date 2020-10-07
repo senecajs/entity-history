@@ -8,6 +8,7 @@
     "test": "lab -v -P test -t 50 --sourcemaps --transform node_modules/lab-transform-typescript -I @@any-promise/REGISTRATION -r console -o stdout -r html -o test/coverage.html",
     "coveralls": "lab -s -P test -r lcov | coveralls",
     "prettier": "prettier --write --no-semi --single-quote *.ts test/*.js",
+    "doc": "seneca-doc",
     "build": "tsc -d",
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm test",
@@ -29,12 +30,14 @@
   "devDependencies": {
     "@hapi/code": "^8.0.2",
     "@hapi/lab": "^24.0.0",
+    "@seneca/doc": "^4.0.1",
     "coveralls": "^3.1.0",
     "lab-transform-typescript": "^3.0.1",
     "prettier": "^2.1.2",
     "s3rver": "^3.6.1",
     "seneca": "^3.22.0",
     "seneca-entity": "^10.1.0",
+    "seneca-plugin-validator": "^0.6.1",
     "seneca-promisify": "^2.0.0",
     "typescript": "^4.0.3"
   }
