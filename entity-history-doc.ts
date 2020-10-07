@@ -1,5 +1,5 @@
 export default {
   foobar: {
-    desc: 'FOOBAR'
-  }
+    desc: 'FOOBAR',
+  },
 }

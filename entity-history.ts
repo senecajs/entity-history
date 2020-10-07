@@ -7,11 +7,9 @@
 import Doc from './entity-history-doc'
 
 module.exports = entity_history
-module.exports.defaults = {
-}
+module.exports.defaults = {}
 module.exports.errors = {}
 module.exports.doc = Doc
-
 
 function entity_history(options: any) {
   const seneca = this
@@ -27,5 +25,4 @@ function entity_history(options: any) {
   }
 }
 
-const intern = (module.exports.intern = {
-})
+const intern = (module.exports.intern = {})

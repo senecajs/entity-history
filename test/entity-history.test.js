@@ -16,9 +16,7 @@ lab.test('plugin-load', async () => {
   return await seneca_instance(null, null).ready()
 })
 
-lab.test('happy', async () => {
-})
-
+lab.test('happy', async () => {})
 
 function seneca_instance(config, plugin_options) {
   return Seneca(config, { legacy: false })
