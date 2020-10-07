@@ -1,6 +1,6 @@
 # @seneca/entity-history 0.0.1
 
-[![npm version](https://badge.fury.io/js/@seneca/entity-history.svg)](https://badge.fury.io/js/@seneca/entity-history)
+[![npm version](https://badge.fury.io/js/%40seneca%2Fentity-history.svg)](https://badge.fury.io/js/%40seneca%2Fentity-history)
 
 <!--JOSTRACA-SLOT-START:shortdesc-->
 Version history for entities
