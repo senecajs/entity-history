@@ -1,6 +1,6 @@
 # @seneca/entity-history 0.0.1
 
-BADGES
+[![npm version](https://badge.fury.io/js/@seneca/entity-history.svg)](https://badge.fury.io/js/@seneca/entity-history)
 
 <!--JOSTRACA-SLOT-START:shortdesc-->
 Version history for entities
@@ -11,54 +11,12 @@ Version history for entities
 
 
 <!--START:options-->
-
-
-## Options
-
-* `` : object <i><small>"&nbsp;"</small></i>
-
-
-Set plugin options when loading with:
-```js
-
-
-seneca.use('entity-history', { name: value, ... })
-
-
-```
-
-
-<small>Note: <code>foo.bar</code> in the list above means 
-<code>{ foo: { bar: ... } }</code></small> 
-
-
-
 <!--END:options-->
 
 <!--START:action-list-->
-
-
-## Action Patterns
-
-* [foo:bar](#-foobar-)
-
-
 <!--END:action-list-->
 
 <!--START:action-desc-->
-
-
-## Action Descriptions
-
-### &laquo; `foo:bar` &raquo;
-
-FOOBAR
-
-
-
-----------
-
-
 <!--END:action-desc-->
 
 
