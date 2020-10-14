@@ -1,6 +1,6 @@
 {
   "name": "@seneca/entity-history",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/entity-history.js",
   "scripts": {
@@ -34,7 +34,6 @@
     "coveralls": "^3.1.0",
     "lab-transform-typescript": "^3.0.1",
     "prettier": "^2.1.2",
-    "s3rver": "^3.6.1",
     "seneca": "^3.22.0",
     "seneca-entity": "^10.1.0",
     "seneca-msg-test": "^2.5.0",
