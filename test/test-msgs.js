@@ -1,7 +1,6 @@
 /* Copyright © 2020 Richard Rodger, MIT License */
 'use strict'
 
-const Seneca = require('Seneca')
 const MsgTest = require('seneca-msg-test')
 const LN = MsgTest.LN
 
