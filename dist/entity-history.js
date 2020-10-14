@@ -26,21 +26,21 @@ function entity_history(options) {
         // TODO: not global - parameterise!!!
         .message('role:entity,cmd:save', cmd_save_history)
         .fix('sys:enthist')
-        .message('enthist:list', history_list);
+        .message('enthist:list', history_list)
+        .message('entity:restore', entity_restore);
     function cmd_save_history(msg, meta) {
         return __awaiter(this, void 0, void 0, function* () {
             let seneca = this;
             let entity$ = msg.ent.entity$;
             // Avoid infinite loops
-            if (entity$.endsWith('sys/enthist') ||
-                entity$.endsWith('sys/entver')) {
+            if (entity$.endsWith('sys/enthist') || entity$.endsWith('sys/entver')) {
                 return this.prior(msg, meta);
             }
             let ent = seneca.entity(msg.ent);
-            console.log('ENT', entity$, ent);
+            // console.log('ENT', entity$, ent)
             // TODO seneca-entity should return null, thus removing need for ?:
             let prev = null == ent.id ? null : yield ent.load$(ent.id);
-            console.log('PREV', ent.id, prev);
+            // console.log('PREV', ent.id, prev)
             let out = yield this.prior(msg, meta);
             let canon = out.canon$({ object: true });
             let fields = []; // changed fields
@@ -48,13 +48,13 @@ function entity_history(options) {
                 let od = out.data$(false);
                 let pd = prev.data$(false);
                 let allkeysuniq = [...new Set([...Object.keys(od), ...Object.keys(pd)])];
-                console.log('ALLK', allkeysuniq);
-                allkeysuniq.forEach(fn => {
+                // console.log('ALLK', allkeysuniq)
+                allkeysuniq.forEach((fn) => {
                     let ov = od[fn];
                     let pv = pd[fn];
-                    let ot = typeof (ov);
-                    let pt = typeof (pv);
-                    console.log('F', fn, ov, pv, ot, pt);
+                    let ot = typeof ov;
+                    let pt = typeof pv;
+                    // console.log('F', fn, ov, pv, ot, pt)
                     if (null != ov || null != pv) {
                         if ('object' === ot && 'object' === pt) {
                             fields.push(fn); // TODO: proper object data equiv test
@@ -65,28 +65,36 @@ function entity_history(options) {
                     }
                 });
             }
+            // console.log('SAVE HIST PREV', prev, prev && prev.rtag)
             // don't wait for version handling to complete
-            seneca.entity('sys/entver').data$({
+            seneca
+                .entity('sys/entver')
+                .data$({
                 ent_id: out.id,
-                prev_rtag: prev ? prev.rtag : null,
+                ent_rtag: out.rtag,
+                prev_rtag: prev ? prev.rtag : '',
                 fields: fields,
                 base: canon.base,
                 name: canon.name,
                 when: Date.now(),
-                d: out.data$(false)
-            }).save$(function (err, entver) {
+                d: out.data$(false),
+            })
+                .save$(function (err, entver) {
                 if (err)
                     return err;
                 if (entver) {
-                    this.entity('sys/enthist').data$({
+                    this.entity('sys/enthist')
+                        .data$({
                         ver_id: entver.id,
                         ent_id: out.id,
-                        prev_rtag: entver.rtag ? entver.rtag : null,
+                        ent_rtag: out.rtag,
+                        prev_rtag: entver.prev_rtag,
                         fields: fields,
                         base: canon.base,
                         name: canon.name,
-                        when: entver.when
-                    }).save$();
+                        when: entver.when,
+                    })
+                        .save$();
                 }
             });
             return out;
@@ -186,16 +194,20 @@ function entity_history(options) {
           // https://github.com/maryrosecook/littlelisp/blob/master/littlelisp.js
           // https://jcubic.github.io/lips/
           // https://github.com/mishoo/SLip
+          // http://synapticfailure.com/ai/lisp_js/
+          // http://www.joeganley.com/code/jslisp.html
+          // https://calormen.com/jisp/
           */
         });
     }
     function history_list(msg) {
         return __awaiter(this, void 0, void 0, function* () {
             let seneca = this;
+            // shortcut for repl use
             let entq = {
                 id: msg.ent.id,
-                base: null,
-                name: null,
+                base: msg.ent.base,
+                name: msg.ent.name,
             };
             if (msg.ent.canon$) {
                 let canon = msg.ent.canon$({ object: true });
@@ -208,12 +220,12 @@ function entity_history(options) {
                     base: entq.base,
                     name: entq.name,
                     sort$: { when: -1 },
-                    limit$: msg.size
+                    limit$: msg.size,
                 },
                 out: {
                     ok: false,
-                    items: []
-                }
+                    items: [],
+                },
             };
             work.out.items = yield seneca.entity('sys/enthist').list$(work.histq);
             work.out.ok = null != work.out.items;
@@ -254,6 +266,95 @@ function entity_history(options) {
           out$.items: sys:entity,cmd:list,base:sys,name:enthist,q:.histq
           
               */
+        });
+    }
+    function entity_restore(msg) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let seneca = this;
+            // shortcut for repl use
+            let work = {
+                entverq: {
+                    ent_id: msg.ent.ent_id,
+                    id: msg.ent.ver_id,
+                    base: msg.ent.base,
+                    name: msg.ent.name,
+                },
+                ent_ver: {
+                    d: null,
+                },
+                res_ent: {
+                    resver_id: '',
+                    data$: (d) => { },
+                    save$: () => __awaiter(this, void 0, void 0, function* () { return ({}); }),
+                },
+                out$: {
+                    ok: false,
+                    item: {},
+                },
+            };
+            // console.log(work.entverq)
+            work.ent_ver = yield seneca.entity('sys/entver').load$(work.entverq);
+            // console.log('ent_ver', work.ent_ver)
+            if (work.ent_ver) {
+                work.res_ent = yield seneca
+                    // TODO: seneca-entity should support canon object here
+                    .entity(msg.ent.base + '/' + msg.ent.name)
+                    .load$(msg.ent.ent_id);
+                // console.log('res_ent', work.res_ent)
+                if (work.res_ent) {
+                    work.res_ent.data$(work.ent_ver.d);
+                    work.res_ent.resver_id = msg.ent.ver_id;
+                    work.out$.item = yield work.res_ent.save$();
+                    // console.log('res_ent saved', work.out$.item)
+                }
+            }
+            work.out$.ok = null != work.out$.item;
+            return work.out$;
+            /*
+        
+        # entity:restore
+        
+        // maybe just use msg, out, and reserve suffix $ for built in functions?
+        msg$:
+          ent:
+            ent_id: string
+            ver_id: string
+            base: string
+            name: string,
+        
+        entverq:
+          ent_id: msg$.ent.ent_id
+          id: msg$.ent.ver_id
+          base: msg$.ent.base
+          name: msg$.ent.name
+        
+        ent_ver: load$ sys/entvar entverq
+        
+        if$ ent_ver
+          res_ent: load$ (+ msg.ent.base '/' msg.ent.name) msg.ent.ent_id
+        
+          if$ res_ent
+            data$ res_ent work.ent_ver.d  // implicit throwaway
+            res_ent.resver_id: msg.ent.ver_id
+            out$.item: save$ res_ent
+        
+        // OR
+        out$.item:
+          save$
+            data$
+              load$ (+ msg.ent.base '/' msg.ent.name) msg.ent.ent_id
+              & {resver_id:msg.ent.ver_id} (.d load$ sys/entvar entverq) // & is unify
+              // FIX load$ sys/entvar entverq may be null, then nothing should happen
+              // nil should propogate upwards stopping everything
+              // BUT how to handle ignorable empty vals?
+              // nil === data$ foo nil
+              // MAYBE: {} | .d load$ sys/entvar entverq
+              //  as X | nil === X ???
+              // is nil bottom? don't think so as not an error
+        
+        out$.ok = null != out$.item
+        
+            */
         });
     }
     return {
