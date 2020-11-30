@@ -19,15 +19,24 @@ lab.test('plugin-load', async () => {
 })
 
 lab.test('happy', async () => {
-  var seneca = await seneca_instance()
+  var seneca = seneca_instance(null, {
+    ents: [
+      'base:zed'
+    ]
+  })
 
+  await seneca.ready()
+  console.log(seneca.find('sys:entity,cmd:save,base:zed'))
+
+  
   let b01 = await seneca
     .entity('zed/bar', { x: 1, y: 'Y1', rtag: 'r01' })
     .save$()
 
   await seneca.ready() // history saving is parallel
   let hl0 = await seneca.post('sys:enthist,enthist:list', { ent: b01 })
-  // console.log('hl0', hl0)
+  console.log('hl0', hl0)
+
   expect(hl0.ok).true
   expect(hl0.items.length).equal(1)
   expect(hl0.items[0]).includes({

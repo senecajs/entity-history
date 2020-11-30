@@ -7,20 +7,28 @@
 import Doc from './entity-history-doc'
 
 module.exports = entity_history
-module.exports.defaults = {}
+module.exports.defaults = {
+  ents: []
+}
 module.exports.errors = {}
 module.exports.doc = Doc
 
 function entity_history(options: any) {
   const seneca = this
 
-  seneca
-    // TODO: not global - parameterise!!!
-    .message('role:entity,cmd:save', cmd_save_history)
+  for (let canon of options.ents) {
+    let ent_save_pat = {
+      ...seneca.util.Jsonic(canon),
+      ...{ role: 'entity', cmd: 'save' }
+    }
+    seneca.message(ent_save_pat, cmd_save_history)
+  }
 
+  seneca
     .fix('sys:enthist')
     .message('enthist:list', history_list)
     .message('entity:restore', entity_restore)
+    .message('entity:load', entity_load)
 
   async function cmd_save_history(
     msg: {
@@ -36,10 +44,17 @@ function entity_history(options: any) {
 
     let entity$ = msg.ent.entity$
 
+    // console.log('+++EH', entity$, msg.ent.id)
+
     // Avoid infinite loops
     if (entity$.endsWith('sys/enthist') || entity$.endsWith('sys/entver')) {
       return this.prior(msg, meta)
     }
+
+    // FIX: remove
+    //if (!entity$.endsWith('core/fixture')) {
+    //  return this.prior(msg, meta)
+    //}
 
     let ent = seneca.entity(msg.ent)
     // console.log('ENT', entity$, ent)
@@ -80,20 +95,33 @@ function entity_history(options: any) {
 
     // console.log('SAVE HIST PREV', prev, prev && prev.rtag)
 
+    var who: any = {}
+
+    // TODO: options
+    if (meta.custom.principal) {
+      who.avatar = meta.custom.principal.avatar
+      who.handle = meta.custom.principal.handle
+      who.name = meta.custom.principal.user.name
+      who.id = meta.custom.principal.user.id
+    }
+
     // don't wait for version handling to complete
+    let entver = {
+      ent_id: out.id,
+      ent_rtag: out.rtag,
+      prev_rtag: prev ? prev.rtag : '',
+      fields: fields,
+      base: canon.base,
+      name: canon.name,
+      when: Date.now(),
+      who,
+      d: out.data$(false),
+    }
+    console.log('EH entvar', entver)
     seneca
       .entity('sys/entver')
-      .data$({
-        ent_id: out.id,
-        ent_rtag: out.rtag,
-        prev_rtag: prev ? prev.rtag : '',
-        fields: fields,
-        base: canon.base,
-        name: canon.name,
-        when: Date.now(),
-        d: out.data$(false),
-      })
-      .save$(function (err: any, entver: any) {
+      .data$(entver)
+      .save$(function(err: any, entver: any) {
         if (err) return err
         if (entver) {
           this.entity('sys/enthist')
@@ -106,6 +134,13 @@ function entity_history(options: any) {
               base: canon.base,
               name: canon.name,
               when: entver.when,
+
+              // TODO: options
+              what: {
+                title: out.title
+              },
+
+              who,
             })
             .save$()
         }
@@ -320,7 +355,7 @@ function entity_history(options: any) {
       },
       res_ent: {
         resver_id: '',
-        data$: (d: any) => {},
+        data$: (d: any) => { },
         save$: async () => ({}),
       },
       out$: {
@@ -403,6 +438,55 @@ out$.ok = null != out$.item
 
     */
   }
+
+
+  async function entity_load(msg: {
+    ent: {
+      ent_id: string
+      ver_id: string
+      base: string
+      name: string
+    }
+  }) {
+    let seneca = this
+
+    // shortcut for repl use
+
+    let work = {
+      entverq: {
+        ent_id: msg.ent.ent_id,
+        id: msg.ent.ver_id,
+        base: msg.ent.base,
+        name: msg.ent.name,
+      },
+      ent_ver: {
+        d: null,
+      },
+      out$: {
+        ok: false,
+        item: {},
+      },
+    }
+
+    console.log('EH LOAD work init', work)
+
+    // console.log(work.entverq)
+    work.ent_ver = await seneca.entity('sys/entver').load$(work.entverq)
+
+    // console.log('ent_ver', work.ent_ver)
+
+    if (work.ent_ver) {
+      work.out$.item =
+        seneca
+          .entity(work.entverq.base + '/' + work.entverq.name)
+          .data$(work.ent_ver.d)
+    }
+
+    work.out$.ok = null != work.out$.item
+
+    return work.out$
+  }
+
 
   return {
     name: 'entity-history',

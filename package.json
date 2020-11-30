@@ -5,7 +5,8 @@
   "main": "dist/entity-history.js",
   "scripts": {
     "watch": "tsc -w -d",
-    "test": "lab -v -P test -t 90 --sourcemaps --transform node_modules/lab-transform-typescript -I @@any-promise/REGISTRATION -r console -o stdout -r html -o test/coverage.html",
+    "test": "lab -v -P test -L -t 90 --sourcemaps --transform node_modules/lab-transform-typescript -I @@any-promise/REGISTRATION -r console -o stdout -r html -o test/coverage.html",
+    "test-some": "lab -v -P test --sourcemaps --transform node_modules/lab-transform-typescript -I @@any-promise/REGISTRATION -g",
     "coveralls": "lab -s -P test -r lcov | coveralls",
     "prettier": "prettier --write --no-semi --single-quote *.ts test/*.js",
     "doc": "seneca-doc",
@@ -29,16 +30,16 @@
   "dependencies": {},
   "devDependencies": {
     "@hapi/code": "^8.0.2",
-    "@hapi/lab": "^24.0.0",
+    "@hapi/lab": "^24.1.0",
     "@seneca/doc": "^4.0.1",
     "coveralls": "^3.1.0",
     "lab-transform-typescript": "^3.0.1",
-    "prettier": "^2.1.2",
-    "seneca": "^3.22.0",
-    "seneca-entity": "^10.1.0",
+    "prettier": "^2.2.1",
+    "seneca": "^3.23.0",
+    "seneca-entity": "^11.0.0",
     "seneca-msg-test": "^2.5.0",
     "seneca-plugin-validator": "^0.6.1",
     "seneca-promisify": "^2.0.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.1.2"
   }
 }
