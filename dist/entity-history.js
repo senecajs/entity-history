@@ -275,7 +275,7 @@ function entity_history(options) {
         // shortcut for repl use
         let work = {
             entverq: {
-                ent_id: msg.ent.ent_id,
+                ent_id: msg.ent.ent_id || msg.ent.id,
                 id: msg.ent.ver_id,
                 base: msg.ent.base,
                 name: msg.ent.name,
@@ -300,7 +300,7 @@ function entity_history(options) {
             work.res_ent = await seneca
                 // TODO: seneca-entity should support canon object here
                 .entity(msg.ent.base + '/' + msg.ent.name)
-                .load$(msg.ent.ent_id);
+                .load$(work.entverq.ent_id);
             // console.log('res_ent', work.res_ent)
             if (work.res_ent) {
                 work.res_ent.data$(work.ent_ver.d);
@@ -362,7 +362,7 @@ function entity_history(options) {
         // shortcut for repl use
         let work = {
             entverq: {
-                ent_id: msg.ent.ent_id,
+                ent_id: msg.ent.ent_id || msg.ent.id,
                 id: msg.ent.ver_id,
                 base: msg.ent.base,
                 name: msg.ent.name,
@@ -375,7 +375,7 @@ function entity_history(options) {
                 item: {},
             },
         };
-        console.log('EH LOAD work init', work);
+        // console.log('EH LOAD work init', work)
         // console.log(work.entverq)
         work.ent_ver = await seneca.entity('sys/entver').load$(work.entverq);
         // console.log('ent_ver', work.ent_ver)

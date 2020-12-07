@@ -321,7 +321,8 @@ function entity_history(options: any) {
 
   async function entity_restore(msg: {
     ent: {
-      ent_id: string
+      id?: string
+      ent_id?: string
       ver_id: string
       base: string
       name: string
@@ -333,7 +334,7 @@ function entity_history(options: any) {
 
     let work = {
       entverq: {
-        ent_id: msg.ent.ent_id,
+        ent_id: msg.ent.ent_id || msg.ent.id,
         id: msg.ent.ver_id,
         base: msg.ent.base,
         name: msg.ent.name,
@@ -362,7 +363,7 @@ function entity_history(options: any) {
 
         // TODO: seneca-entity should support canon object here
         .entity(msg.ent.base + '/' + msg.ent.name)
-        .load$(msg.ent.ent_id)
+        .load$(work.entverq.ent_id)
 
       // console.log('res_ent', work.res_ent)
 
@@ -430,7 +431,8 @@ out$.ok = null != out$.item
 
   async function entity_load(msg: {
     ent: {
-      ent_id: string
+      id?: string
+      ent_id?: string
       ver_id: string
       base: string
       name: string
@@ -442,7 +444,7 @@ out$.ok = null != out$.item
 
     let work = {
       entverq: {
-        ent_id: msg.ent.ent_id,
+        ent_id: msg.ent.ent_id || msg.ent.id,
         id: msg.ent.ver_id,
         base: msg.ent.base,
         name: msg.ent.name,
@@ -456,7 +458,7 @@ out$.ok = null != out$.item
       },
     }
 
-    console.log('EH LOAD work init', work)
+    // console.log('EH LOAD work init', work)
 
     // console.log(work.entverq)
     work.ent_ver = await seneca.entity('sys/entver').load$(work.entverq)

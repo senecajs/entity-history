@@ -68,9 +68,12 @@ module.exports = {
       },
     }),
 
-    // { pattern: 'role:mem-store,cmd:dump' },
+    // { print: true, pattern: 'role:mem-store,cmd:dump' },
 
+    
     LN({
+      // print: true,
+      name: 'h0',
       pattern: 'entity:history',
       params: {
         ent: {
@@ -87,5 +90,88 @@ module.exports = {
         ],
       },
     }),
+
+
+    LN({
+      // print: true,
+      pattern: 'entity:load',
+      params: {
+        ent: {
+          ent_id: 'f01',
+          ver_id: '`h0:out.items[0].ver_id`',
+          base: 'zed',
+          name: 'foo',
+        },
+      },
+      out: {
+        ok: true,
+        item: { 'entity$': '-/zed/foo', x: 2, y: 'y01', id: 'f01' }
+      },
+    }),
+
+    LN({
+      // print: true,
+      pattern: 'entity:load',
+      params: {
+        ent: {
+          id: 'f01',
+          ver_id: '`h0:out.items[1].ver_id`',
+          base: 'zed',
+          name: 'foo',
+        },
+      },
+      out: {
+        ok: true,
+        item: { 'entity$': '-/zed/foo', x: 1, y: 'y01', id: 'f01' }
+      },
+    }),
+
+    LN({
+      // print: true,
+      pattern: 'entity:restore',
+      params: {
+        ent: {
+          id: 'f01',
+          ver_id: '`h0:out.items[1].ver_id`',
+          base: 'zed',
+          name: 'foo',
+        },
+      },
+      out: {
+        ok: true,
+        item: {
+          'entity$': '-/zed/foo',
+          x: 1,
+          y: 'y01',
+          id: 'f01',
+          resver_id: '`h0:out.items[1].ver_id`',
+        }
+      },
+    }),
+
+
+    LN({
+      // print: true,
+      name: 'h0',
+      pattern: 'entity:history',
+      params: {
+        ent: {
+          id: 'f01',
+          base: 'zed',
+          name: 'foo',
+        },
+      },
+      out: {
+        ok: true,
+        items: [
+          { ent_id: 'f01', fields: ['x'], base: 'zed', name: 'foo' },
+          { ent_id: 'f01', fields: ['x'], base: 'zed', name: 'foo' },
+          { ent_id: 'f01', fields: [], base: 'zed', name: 'foo' },
+        ],
+      },
+    }),
+
+    // { print: true, pattern: 'role:mem-store,cmd:dump' },
+    
   ],
 }
