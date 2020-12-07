@@ -22,11 +22,19 @@ lab.test('happy', async () => {
   var seneca = seneca_instance(null, {
     ents: [
       'base:zed'
-    ]
+    ],
+    build_who: (prev,fields,ent,msg,meta)=>({
+      name: meta.custom.name
+    }),
+    build_what: (prev,fields,ent,msg,meta)=>({
+      title: ent.x
+    })
+
   })
 
+
   await seneca.ready()
-  console.log(seneca.find('sys:entity,cmd:save,base:zed'))
+  // console.log(seneca.find('sys:entity,cmd:save,base:zed'))
 
   
   let b01 = await seneca
@@ -34,8 +42,8 @@ lab.test('happy', async () => {
     .save$()
 
   await seneca.ready() // history saving is parallel
-  let hl0 = await seneca.post('sys:enthist,enthist:list', { ent: b01 })
-  console.log('hl0', hl0)
+  let hl0 = await seneca.post('sys:entity,rig:history,entity:history', { ent: b01 })
+  // console.log('hl0', hl0)
 
   expect(hl0.ok).true
   expect(hl0.items.length).equal(1)
@@ -46,6 +54,8 @@ lab.test('happy', async () => {
     fields: [],
     ent_rtag: 'r01',
     prev_rtag: '',
+    who: {name:'alice'},
+    what: {title:1},
   })
 
   b01.x = 2
@@ -53,7 +63,7 @@ lab.test('happy', async () => {
   await b01.save$()
 
   await seneca.ready() // history saving is parallel
-  let hl1 = await seneca.post('sys:enthist,enthist:list', { ent: b01 })
+  let hl1 = await seneca.post('sys:entity,rig:history,entity:history', { ent: b01 })
   // console.log('hl1', hl1)
   expect(hl1.ok).true
   expect(hl1.items.length).equal(2)
@@ -78,7 +88,7 @@ lab.test('happy', async () => {
   let v0 = hl1.items[1]
   // console.log(v0)
 
-  let res0 = await seneca.post('sys:enthist,entity:restore', {
+  let res0 = await seneca.post('sys:entity,rig:history,entity:restore', {
     ent: {
       ent_id: v0.ent_id,
       ver_id: v0.ver_id,
@@ -100,7 +110,7 @@ lab.test('happy', async () => {
   expect(b01r).includes({ x: 1, y: 'Y1', rtag: 'r01', resver_id: v0.ver_id })
 
   await seneca.ready() // history saving is parallel
-  let hl2 = await seneca.post('sys:enthist,enthist:list', { ent: b01 })
+  let hl2 = await seneca.post('sys:entity,rig:history,entity:history', { ent: b01 })
   // console.log(hl2)
   expect(hl2.items.length).equal(3)
   expect(hl2.items[0]).includes({
@@ -112,12 +122,18 @@ lab.test('happy', async () => {
   })
 })
 
+
 lab.test('messages', async () => {
-  var seneca = await seneca_instance()
+  var seneca = await seneca_instance(null, {
+    ents: [
+      'base:zed'
+    ]
+  })
 
   var msgtest = SenecaMsgTest(seneca, require('./test-msgs.js'))
   await msgtest()
 })
+
 
 function seneca_instance(config, plugin_options) {
   return Seneca(config, { legacy: false })
@@ -125,4 +141,5 @@ function seneca_instance(config, plugin_options) {
     .use('promisify')
     .use('entity')
     .use(Plugin, plugin_options)
+    .delegate(null,{custom:{name:'alice'}})
 }

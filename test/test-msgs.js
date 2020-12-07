@@ -7,7 +7,8 @@ const LN = MsgTest.LN
 module.exports = {
   print: false,
   test: true,
-  fix: 'sys:enthist',
+  log: false,
+  fix: 'sys:entity,rig:history',
   allow: {
     missing: true,
   },
@@ -34,7 +35,7 @@ module.exports = {
     // { pattern: 'role:mem-store,cmd:dump' },
 
     LN({
-      pattern: 'sys:enthist,enthist:list',
+      pattern: 'entity:history',
       params: {
         ent: {
           id: 'f01',
@@ -70,7 +71,7 @@ module.exports = {
     // { pattern: 'role:mem-store,cmd:dump' },
 
     LN({
-      pattern: 'sys:enthist,enthist:list',
+      pattern: 'entity:history',
       params: {
         ent: {
           id: 'f01',

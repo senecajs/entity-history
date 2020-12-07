@@ -8,7 +8,8 @@ import Doc from './entity-history-doc'
 
 module.exports = entity_history
 module.exports.defaults = {
-  ents: []
+  ents: [],
+  build_who: null, // function to generate who object
 }
 module.exports.errors = {}
 module.exports.doc = Doc
@@ -24,11 +25,13 @@ function entity_history(options: any) {
     seneca.message(ent_save_pat, cmd_save_history)
   }
 
+
   seneca
-    .fix('sys:enthist')
-    .message('enthist:list', history_list)
+    .fix('sys:entity,rig:history')
+    .message('entity:history', entity_history)
     .message('entity:restore', entity_restore)
     .message('entity:load', entity_load)
+
 
   async function cmd_save_history(
     msg: {
@@ -41,27 +44,19 @@ function entity_history(options: any) {
     meta: any
   ) {
     let seneca = this
-
     let entity$ = msg.ent.entity$
 
-    // console.log('+++EH', entity$, msg.ent.id)
 
     // Avoid infinite loops
     if (entity$.endsWith('sys/enthist') || entity$.endsWith('sys/entver')) {
       return this.prior(msg, meta)
     }
 
-    // FIX: remove
-    //if (!entity$.endsWith('core/fixture')) {
-    //  return this.prior(msg, meta)
-    //}
 
     let ent = seneca.entity(msg.ent)
-    // console.log('ENT', entity$, ent)
 
     // TODO seneca-entity should return null, thus removing need for ?:
     let prev = null == ent.id ? null : await ent.load$(ent.id)
-    // console.log('PREV', ent.id, prev)
 
     let out = await this.prior(msg, meta)
 
@@ -72,8 +67,6 @@ function entity_history(options: any) {
       let od = out.data$(false)
       let pd = prev.data$(false)
       let allkeysuniq = [...new Set([...Object.keys(od), ...Object.keys(pd)])]
-
-      // console.log('ALLK', allkeysuniq)
 
       allkeysuniq.forEach((fn) => {
         let ov = od[fn]
@@ -95,15 +88,14 @@ function entity_history(options: any) {
 
     // console.log('SAVE HIST PREV', prev, prev && prev.rtag)
 
-    var who: any = {}
+    var who: any =
+      null == options.build_who ? {} :
+        options.build_who.call(this, prev, fields, out, ...arguments)
 
-    // TODO: options
-    if (meta.custom.principal) {
-      who.avatar = meta.custom.principal.avatar
-      who.handle = meta.custom.principal.handle
-      who.name = meta.custom.principal.user.name
-      who.id = meta.custom.principal.user.id
-    }
+    var what: any =
+      null == options.build_who ? {} :
+        options.build_what.call(this, prev, fields, out, ...arguments)
+
 
     // don't wait for version handling to complete
     let entver = {
@@ -117,7 +109,8 @@ function entity_history(options: any) {
       who,
       d: out.data$(false),
     }
-    console.log('EH entvar', entver)
+
+    //console.log('EH entvar', entver)
     seneca
       .entity('sys/entver')
       .data$(entver)
@@ -134,12 +127,7 @@ function entity_history(options: any) {
               base: canon.base,
               name: canon.name,
               when: entver.when,
-
-              // TODO: options
-              what: {
-                title: out.title
-              },
-
+              what,
               who,
             })
             .save$()
@@ -250,7 +238,7 @@ function entity_history(options: any) {
   */
   }
 
-  async function history_list(msg: {
+  async function entity_history(msg: {
     ent: {
       id: string
       base: string
