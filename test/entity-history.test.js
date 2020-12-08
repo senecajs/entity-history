@@ -140,6 +140,11 @@ function seneca_instance(config, plugin_options) {
     .test()
     .use('promisify')
     .use('entity')
+
+  // uncomment to test against a local mongo db
+  // NOTE: clear manually after each run
+    //.use('mongo-store', { host: 'localhost', name: 'seneca_enthist_test' })
+
     .use(Plugin, plugin_options)
     .delegate(null,{custom:{name:'alice'}})
 }

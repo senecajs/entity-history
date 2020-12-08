@@ -5,7 +5,7 @@ const MsgTest = require('seneca-msg-test')
 const LN = MsgTest.LN
 
 module.exports = {
-  print: false,
+  print: true,
   test: true,
   log: false,
   fix: 'sys:entity,rig:history',
@@ -32,7 +32,7 @@ module.exports = {
       },
     }),
 
-    // { pattern: 'role:mem-store,cmd:dump' },
+    { pattern: 'role:mem-store,cmd:dump' },
 
     LN({
       pattern: 'entity:history',
@@ -72,7 +72,6 @@ module.exports = {
 
     
     LN({
-      // print: true,
       name: 'h0',
       pattern: 'entity:history',
       params: {
@@ -151,8 +150,7 @@ module.exports = {
 
 
     LN({
-      // print: true,
-      name: 'h0',
+      name: 'h1',
       pattern: 'entity:history',
       params: {
         ent: {
@@ -172,6 +170,30 @@ module.exports = {
     }),
 
     // { print: true, pattern: 'role:mem-store,cmd:dump' },
+
+    // TODO: handle mongo style queries in mem-store
+    LN({
+      pattern: 'entity:history',
+      params: {
+        ent: {
+          id: 'f01',
+          base: 'zed',
+          name: 'foo',
+        },
+        diff: {
+          ver_id: '`h1:out.items[1].id`'
+        }
+      },
+      out: {
+        ok: true,
+        items: [
+          { ent_id: 'f01', fields: ['x'], base: 'zed', name: 'foo' },
+          { ent_id: 'f01', fields: ['x'], base: 'zed', name: 'foo' },
+        ],
+        changed: ['x']
+      },
+    }),
+
     
   ],
 }

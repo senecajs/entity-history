@@ -6,10 +6,13 @@
 
 import Doc from './entity-history-doc'
 
+import { entity_history_msg } from './lib/entity_history_msg'
+
 module.exports = entity_history
 module.exports.defaults = {
   ents: [],
   build_who: null, // function to generate who object
+  wait: true // wait for history to save before returning
 }
 module.exports.errors = {}
 module.exports.doc = Doc
@@ -28,7 +31,7 @@ function entity_history(options: any) {
 
   seneca
     .fix('sys:entity,rig:history')
-    .message('entity:history', entity_history)
+    .message('entity:history', entity_history_msg)
     .message('entity:restore', entity_restore)
     .message('entity:load', entity_load)
 
@@ -68,6 +71,9 @@ function entity_history(options: any) {
       let pd = prev.data$(false)
       let allkeysuniq = [...new Set([...Object.keys(od), ...Object.keys(pd)])]
 
+        // Do not include resver_id in changed fields as this would be spurious
+        .filter((k: string) => k != 'resver_id')
+
       allkeysuniq.forEach((fn) => {
         let ov = od[fn]
         let pv = pd[fn]
@@ -97,7 +103,7 @@ function entity_history(options: any) {
         options.build_what.call(this, prev, fields, out, ...arguments)
 
 
-    // don't wait for version handling to complete
+    // don't wait for version handling to complete, unless options.wait
     let entver = {
       ent_id: out.id,
       ent_rtag: out.rtag,
@@ -111,28 +117,40 @@ function entity_history(options: any) {
     }
 
     //console.log('EH entvar', entver)
-    seneca
-      .entity('sys/entver')
-      .data$(entver)
-      .save$(function(err: any, entver: any) {
-        if (err) return err
-        if (entver) {
-          this.entity('sys/enthist')
-            .data$({
-              ver_id: entver.id,
-              ent_id: out.id,
-              ent_rtag: out.rtag,
-              prev_rtag: entver.prev_rtag,
-              fields: fields,
-              base: canon.base,
-              name: canon.name,
-              when: entver.when,
-              what,
-              who,
-            })
-            .save$()
-        }
-      })
+    let done = new Promise((resolve, reject) => {
+      seneca
+        .entity('sys/entver')
+        .data$(entver)
+        .save$(function(err: any, entver: any) {
+          if (err) return reject(err)
+          if (entver) {
+            this.entity('sys/enthist')
+              .data$({
+                // NOTE: sys/entver and sys/enthist use same id
+                id$: entver.id,
+                ver_id: entver.id,
+                ent_id: out.id,
+                ent_rtag: out.rtag,
+                prev_rtag: entver.prev_rtag,
+                fields: fields,
+                base: canon.base,
+                name: canon.name,
+                when: entver.when,
+                what,
+                who,
+              })
+              .save$(function(err: any) {
+                if (err) return reject(err)
+
+                return resolve(undefined)
+              })
+          }
+        })
+    })
+
+    if (options.wait) {
+      await done
+    }
 
     return out
 
@@ -238,86 +256,6 @@ function entity_history(options: any) {
   */
   }
 
-  async function entity_history(msg: {
-    ent: {
-      id: string
-      base: string
-      name: string
-      canon$: any
-    }
-    size: 111
-  }) {
-    let seneca = this
-
-    // shortcut for repl use
-    let entq = {
-      id: msg.ent.id,
-      base: msg.ent.base,
-      name: msg.ent.name,
-    }
-
-    if (msg.ent.canon$) {
-      let canon = msg.ent.canon$({ object: true })
-      entq.base = canon.base
-      entq.name = canon.name
-    }
-
-    let work = {
-      histq: {
-        ent_id: entq.id,
-        base: entq.base,
-        name: entq.name,
-        sort$: { when: -1 },
-        limit$: msg.size,
-      },
-      out: {
-        ok: false,
-        items: [],
-      },
-    }
-
-    work.out.items = await seneca.entity('sys/enthist').list$(work.histq)
-    work.out.ok = null != work.out.items
-
-    return work.out
-
-    /*
-  
-  # sys:enthist
-  
-  ## enthist:list
-  msg$:
-  ent:
-    id: string
-    base: string
-    name: string
-  size: 111
-  histq:
-  ent_id: msg$.ent.id
-  base: msg$.ent.base
-  name: msg$.ent.name
-  sort$: when: -1
-  limit$: msg$.size
-  out$:
-  ok => null != items  // lazy
-  items: []
-  
-  // above are just insert operations on tree
-  
-  // operations on the tree are TFS unifications! (on subtrees)
-  
-  // all equiv
-  out$.items: load$ sys/enthist histq
-  out$:
-  items: load$ sys/enthist histq
-  out$: items: load$ sys/enthist histq
-  
-  
-  // shortcut for
-  out$.items: sys:entity,cmd:list,base:sys,name:enthist,q:.histq
-  
-      */
-  }
 
   async function entity_restore(msg: {
     ent: {
