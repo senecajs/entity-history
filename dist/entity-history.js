@@ -12,7 +12,7 @@ module.exports = entity_history;
 module.exports.defaults = {
     ents: [],
     build_who: null,
-    wait: true // wait for history to save before returning
+    wait: true,
 };
 module.exports.errors = {};
 module.exports.doc = entity_history_doc_1.default;
@@ -21,7 +21,7 @@ function entity_history(options) {
     for (let canon of options.ents) {
         let ent_save_pat = {
             ...seneca.util.Jsonic(canon),
-            ...{ role: 'entity', cmd: 'save' }
+            ...{ role: 'entity', cmd: 'save' },
         };
         seneca.message(ent_save_pat, cmd_save_history);
     }
@@ -66,10 +66,12 @@ function entity_history(options) {
             });
         }
         // console.log('SAVE HIST PREV', prev, prev && prev.rtag)
-        var who = null == options.build_who ? {} :
-            options.build_who.call(this, prev, fields, out, ...arguments);
-        var what = null == options.build_who ? {} :
-            options.build_what.call(this, prev, fields, out, ...arguments);
+        var who = null == options.build_who
+            ? {}
+            : options.build_who.call(this, prev, fields, out, ...arguments);
+        var what = null == options.build_who
+            ? {}
+            : options.build_what.call(this, prev, fields, out, ...arguments);
         // don't wait for version handling to complete, unless options.wait
         let entver = {
             ent_id: out.id,
@@ -329,10 +331,9 @@ function entity_history(options) {
         work.ent_ver = await seneca.entity('sys/entver').load$(work.entverq);
         // console.log('ent_ver', work.ent_ver)
         if (work.ent_ver) {
-            work.out$.item =
-                seneca
-                    .entity(work.entverq.base + '/' + work.entverq.name)
-                    .data$(work.ent_ver.d);
+            work.out$.item = seneca
+                .entity(work.entverq.base + '/' + work.entverq.name)
+                .data$(work.ent_ver.d);
         }
         work.out$.ok = null != work.out$.item;
         return work.out$;

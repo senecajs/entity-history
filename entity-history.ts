@@ -12,7 +12,7 @@ module.exports = entity_history
 module.exports.defaults = {
   ents: [],
   build_who: null, // function to generate who object
-  wait: true // wait for history to save before returning
+  wait: true, // wait for history to save before returning
 }
 module.exports.errors = {}
 module.exports.doc = Doc
@@ -23,18 +23,16 @@ function entity_history(options: any) {
   for (let canon of options.ents) {
     let ent_save_pat = {
       ...seneca.util.Jsonic(canon),
-      ...{ role: 'entity', cmd: 'save' }
+      ...{ role: 'entity', cmd: 'save' },
     }
     seneca.message(ent_save_pat, cmd_save_history)
   }
-
 
   seneca
     .fix('sys:entity,rig:history')
     .message('entity:history', entity_history_msg)
     .message('entity:restore', entity_restore)
     .message('entity:load', entity_load)
-
 
   async function cmd_save_history(
     msg: {
@@ -49,12 +47,10 @@ function entity_history(options: any) {
     let seneca = this
     let entity$ = msg.ent.entity$
 
-
     // Avoid infinite loops
     if (entity$.endsWith('sys/enthist') || entity$.endsWith('sys/entver')) {
       return this.prior(msg, meta)
     }
-
 
     let ent = seneca.entity(msg.ent)
 
@@ -95,13 +91,14 @@ function entity_history(options: any) {
     // console.log('SAVE HIST PREV', prev, prev && prev.rtag)
 
     var who: any =
-      null == options.build_who ? {} :
-        options.build_who.call(this, prev, fields, out, ...arguments)
+      null == options.build_who
+        ? {}
+        : options.build_who.call(this, prev, fields, out, ...arguments)
 
     var what: any =
-      null == options.build_who ? {} :
-        options.build_what.call(this, prev, fields, out, ...arguments)
-
+      null == options.build_who
+        ? {}
+        : options.build_what.call(this, prev, fields, out, ...arguments)
 
     // don't wait for version handling to complete, unless options.wait
     let entver = {
@@ -121,7 +118,7 @@ function entity_history(options: any) {
       seneca
         .entity('sys/entver')
         .data$(entver)
-        .save$(function(err: any, entver: any) {
+        .save$(function (err: any, entver: any) {
           if (err) return reject(err)
           if (entver) {
             this.entity('sys/enthist')
@@ -139,7 +136,7 @@ function entity_history(options: any) {
                 what,
                 who,
               })
-              .save$(function(err: any) {
+              .save$(function (err: any) {
                 if (err) return reject(err)
 
                 return resolve(undefined)
@@ -256,7 +253,6 @@ function entity_history(options: any) {
   */
   }
 
-
   async function entity_restore(msg: {
     ent: {
       id?: string
@@ -282,7 +278,7 @@ function entity_history(options: any) {
       },
       res_ent: {
         resver_id: '',
-        data$: (d: any) => { },
+        data$: (d: any) => {},
         save$: async () => ({}),
       },
       out$: {
@@ -366,7 +362,6 @@ out$.ok = null != out$.item
     */
   }
 
-
   async function entity_load(msg: {
     ent: {
       id?: string
@@ -404,17 +399,15 @@ out$.ok = null != out$.item
     // console.log('ent_ver', work.ent_ver)
 
     if (work.ent_ver) {
-      work.out$.item =
-        seneca
-          .entity(work.entverq.base + '/' + work.entverq.name)
-          .data$(work.ent_ver.d)
+      work.out$.item = seneca
+        .entity(work.entverq.base + '/' + work.entverq.name)
+        .data$(work.ent_ver.d)
     }
 
     work.out$.ok = null != work.out$.item
 
     return work.out$
   }
-
 
   return {
     name: 'entity-history',

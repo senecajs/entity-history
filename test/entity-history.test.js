@@ -20,29 +20,26 @@ lab.test('plugin-load', async () => {
 
 lab.test('happy', async () => {
   var seneca = seneca_instance(null, {
-    ents: [
-      'base:zed'
-    ],
-    build_who: (prev,fields,ent,msg,meta)=>({
-      name: meta.custom.name
+    ents: ['base:zed'],
+    build_who: (prev, fields, ent, msg, meta) => ({
+      name: meta.custom.name,
     }),
-    build_what: (prev,fields,ent,msg,meta)=>({
-      title: ent.x
-    })
-
+    build_what: (prev, fields, ent, msg, meta) => ({
+      title: ent.x,
+    }),
   })
-
 
   await seneca.ready()
   // console.log(seneca.find('sys:entity,cmd:save,base:zed'))
 
-  
   let b01 = await seneca
     .entity('zed/bar', { x: 1, y: 'Y1', rtag: 'r01' })
     .save$()
 
   await seneca.ready() // history saving is parallel
-  let hl0 = await seneca.post('sys:entity,rig:history,entity:history', { ent: b01 })
+  let hl0 = await seneca.post('sys:entity,rig:history,entity:history', {
+    ent: b01,
+  })
   // console.log('hl0', hl0)
 
   expect(hl0.ok).true
@@ -54,8 +51,8 @@ lab.test('happy', async () => {
     fields: [],
     ent_rtag: 'r01',
     prev_rtag: '',
-    who: {name:'alice'},
-    what: {title:1},
+    who: { name: 'alice' },
+    what: { title: 1 },
   })
 
   b01.x = 2
@@ -63,7 +60,9 @@ lab.test('happy', async () => {
   await b01.save$()
 
   await seneca.ready() // history saving is parallel
-  let hl1 = await seneca.post('sys:entity,rig:history,entity:history', { ent: b01 })
+  let hl1 = await seneca.post('sys:entity,rig:history,entity:history', {
+    ent: b01,
+  })
   // console.log('hl1', hl1)
   expect(hl1.ok).true
   expect(hl1.items.length).equal(2)
@@ -110,7 +109,9 @@ lab.test('happy', async () => {
   expect(b01r).includes({ x: 1, y: 'Y1', rtag: 'r01', resver_id: v0.ver_id })
 
   await seneca.ready() // history saving is parallel
-  let hl2 = await seneca.post('sys:entity,rig:history,entity:history', { ent: b01 })
+  let hl2 = await seneca.post('sys:entity,rig:history,entity:history', {
+    ent: b01,
+  })
   // console.log(hl2)
   expect(hl2.items.length).equal(3)
   expect(hl2.items[0]).includes({
@@ -122,29 +123,27 @@ lab.test('happy', async () => {
   })
 })
 
-
 lab.test('messages', async () => {
   var seneca = await seneca_instance(null, {
-    ents: [
-      'base:zed'
-    ]
+    ents: ['base:zed'],
   })
 
   var msgtest = SenecaMsgTest(seneca, require('./test-msgs.js'))
   await msgtest()
 })
 
-
 function seneca_instance(config, plugin_options) {
-  return Seneca(config, { legacy: false })
-    .test()
-    .use('promisify')
-    .use('entity')
+  return (
+    Seneca(config, { legacy: false })
+      .test()
+      .use('promisify')
+      .use('entity')
 
-  // uncomment to test against a local mongo db
-  // NOTE: clear manually after each run
-  // .use('mongo-store', { host: 'localhost', name: 'seneca_enthist_test' })
+      // uncomment to test against a local mongo db
+      // NOTE: clear manually after each run
+      // .use('mongo-store', { host: 'localhost', name: 'seneca_enthist_test' })
 
-    .use(Plugin, plugin_options)
-    .delegate(null,{custom:{name:'alice'}})
+      .use(Plugin, plugin_options)
+      .delegate(null, { custom: { name: 'alice' } })
+  )
 }

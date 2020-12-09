@@ -70,7 +70,6 @@ module.exports = {
 
     // { print: true, pattern: 'role:mem-store,cmd:dump' },
 
-    
     LN({
       name: 'h0',
       pattern: 'entity:history',
@@ -90,7 +89,6 @@ module.exports = {
       },
     }),
 
-
     LN({
       // print: true,
       pattern: 'entity:load',
@@ -104,7 +102,7 @@ module.exports = {
       },
       out: {
         ok: true,
-        item: { 'entity$': '-/zed/foo', x: 2, y: 'y01', id: 'f01' }
+        item: { entity$: '-/zed/foo', x: 2, y: 'y01', id: 'f01' },
       },
     }),
 
@@ -121,7 +119,7 @@ module.exports = {
       },
       out: {
         ok: true,
-        item: { 'entity$': '-/zed/foo', x: 1, y: 'y01', id: 'f01' }
+        item: { entity$: '-/zed/foo', x: 1, y: 'y01', id: 'f01' },
       },
     }),
 
@@ -139,15 +137,14 @@ module.exports = {
       out: {
         ok: true,
         item: {
-          'entity$': '-/zed/foo',
+          entity$: '-/zed/foo',
           x: 1,
           y: 'y01',
           id: 'f01',
           resver_id: '`h0:out.items[1].ver_id`',
-        }
+        },
       },
     }),
-
 
     LN({
       name: 'h1',
@@ -181,8 +178,8 @@ module.exports = {
           name: 'foo',
         },
         diff: {
-          ver_id: '`h1:out.items[1].id`'
-        }
+          ver_id: '`h1:out.items[1].id`',
+        },
       },
       out: {
         ok: true,
@@ -190,10 +187,8 @@ module.exports = {
           { ent_id: 'f01', fields: ['x'], base: 'zed', name: 'foo' },
           { ent_id: 'f01', fields: ['x'], base: 'zed', name: 'foo' },
         ],
-        changed: ['x']
+        changed: ['x'],
       },
     }),
-
-    
   ],
 }

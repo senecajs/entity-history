@@ -1,6 +1,6 @@
 {
   "name": "@seneca/entity-history",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "main": "dist/entity-history.js",
   "types": "dist/entity-history.d.ts",
