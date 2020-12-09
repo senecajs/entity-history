@@ -1,7 +1,7 @@
 # @seneca/entity-history 0.2.0
 
 [![npm version](https://badge.fury.io/js/%40seneca%2Fentity-history.svg)](https://badge.fury.io/js/%40seneca%2Fentity-history)
-![Build](https://github.com/senecajs/seneca-entity-history/workflows/build/badge.svg)
+[!![Build](https://github.com/senecajs/seneca-entity-history/workflows/build/badge.svg)](https://github.com/senecajs/seneca-entity-history/actions?query=workflow%3Abuild)
 [![Coverage Status](https://coveralls.io/repos/github/senecajs/seneca-entity-history/badge.svg?branch=main)](https://coveralls.io/github/senecajs/seneca-entity-history?branch=main)
 [![Maintainability](https://api.codeclimate.com/v1/badges/0b1990c4264d66b01c50/maintainability)](https://codeclimate.com/github/senecajs/seneca-entity-history/maintainability)
 [![DeepScan grade](https://deepscan.io/api/teams/5016/projects/14231/branches/259194/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5016&pid=14231&bid=259194)
