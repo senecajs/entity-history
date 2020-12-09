@@ -1,4 +1,4 @@
-# @seneca/entity-history 0.1.0
+# @seneca/entity-history 0.2.0
 
 [![npm version](https://badge.fury.io/js/%40seneca%2Fentity-history.svg)](https://badge.fury.io/js/%40seneca%2Fentity-history)
 ![Build](https://github.com/senecajs/seneca-entity-history/workflows/build/badge.svg)
