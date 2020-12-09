@@ -51,7 +51,6 @@ async function entity_history_msg(msg) {
     else {
         delete work.histq.when;
     }
-    console.log('Q', work.histq);
     work.out.items = await seneca.entity('sys/enthist').list$(work.histq);
     if (diff) {
         // union of changed fields

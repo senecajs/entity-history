@@ -5,7 +5,7 @@ const MsgTest = require('seneca-msg-test')
 const LN = MsgTest.LN
 
 module.exports = {
-  print: true,
+  print: false,
   test: true,
   log: false,
   fix: 'sys:entity,rig:history',

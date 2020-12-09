@@ -116,7 +116,7 @@ lab.test('happy', async () => {
   expect(hl2.items[0]).includes({
     ent_rtag: 'r01',
     prev_rtag: 'r02',
-    fields: ['x', 'rtag', 'resver_id'],
+    fields: ['x', 'rtag'],
     base: 'zed',
     name: 'bar',
   })
