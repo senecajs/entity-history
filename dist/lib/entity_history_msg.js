@@ -4,6 +4,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.entity_history_msg = void 0;
 /* $lab:coverage:on$ */
+// TODO: support pattern:
+// `sys:entity,rig:history,base,name,id`
 async function entity_history_msg(msg) {
     let seneca = this;
     let size = msg.size || 111;

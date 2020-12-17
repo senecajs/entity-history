@@ -125,6 +125,7 @@ lab.test('happy', async () => {
 
 lab.test('messages', async () => {
   var seneca = await seneca_instance(null, {
+    wait: true,
     ents: ['base:zed'],
   })
 

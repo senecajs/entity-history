@@ -12,7 +12,7 @@ module.exports = entity_history
 module.exports.defaults = {
   ents: [],
   build_who: null, // function to generate who object
-  wait: true, // wait for history to save before returning
+  wait: false, // wait for history to save before returning
 }
 module.exports.errors = {}
 module.exports.doc = Doc
@@ -114,11 +114,12 @@ function entity_history(options: any) {
     }
 
     //console.log('EH entvar', entver)
+    // TODO: move to intern function, then use async/await
     let done = new Promise((resolve, reject) => {
       seneca
         .entity('sys/entver')
         .data$(entver)
-        .save$(function (err: any, entver: any) {
+        .save$(function(err: any, entver: any) {
           if (err) return reject(err)
           if (entver) {
             this.entity('sys/enthist')
@@ -136,16 +137,45 @@ function entity_history(options: any) {
                 what,
                 who,
               })
-              .save$(function (err: any) {
+              .save$(function(err: any) {
                 if (err) return reject(err)
 
-                return resolve(undefined)
+
+                // also index by entity id for fast lookup of current version
+                seneca
+                  .entity('sys/entver')
+                  .load$(entver.ent_id, function(err: Error, finder: any) {
+                    if (err) return reject(err)
+
+                    console.log('FINDER A', finder)
+
+                    if (finder) {
+                      finder = finder.data$(entver)
+                      finder.id = entver.ent_id
+                    }
+                    else {
+                      finder = entver.clone$()
+                      delete finder.id
+                      finder.id$ = entver.ent_id
+                    }
+                    finder.ver_id = entver.id
+                    finder.is_current = true
+
+                    console.log('FINDER B', finder)
+
+                    finder.save$(function(err: any) {
+                      if (err) return reject(err)
+
+                      return resolve(undefined)
+                    })
+                  })
               })
           }
         })
     })
 
     if (options.wait) {
+      console.log('WAIT FOR HIST')
       await done
     }
 
@@ -154,46 +184,46 @@ function entity_history(options: any) {
     /*
       
   # sys:entity,cmd:save
-  
+   
   // msg$ is a special name - will attempt to unify with seneca inbound message
   msg$:
   ent:
     id: null | string
-  
+   
   out$: Entity // Entity is a type declatation, external provided
-  
+   
   prev: load$ msg$.ent.entity$ msg$.ent.id
-  
+   
   // null result will fail as cannot unify with Entity
   out$: prior$
-  
-  
+   
+   
   // conditionals
   result: if$ expr0 expr1
-  
+   
   // throwaway
   : if$ expr0 expr1
-  
+   
   // implicit throwaway
   if$ expr0 expr1
-  
+   
   // expr0 is truthy: true is non-nil
-  
+   
   // expr1 can't have side effects!!!
   // but does get it's own local context with access to top
   // you can only change top level at the top level
   if$ expr0 expr1
-  
-  
+   
+   
   if$ prev
   // indent is an implicit ()
-  
+   
   // equivs, generates: {base:string|null,name:string,}
   canon: /((?<base>\w+)/)?(?<name>\w+)$/ out$.entity$  // apply a regexp 
   canon: out$.canon$  // recognize function, call it!
-  
+   
   fields: string[]  // types are values! unify!
-  
+   
   // get out of jail
   // lazy eval, unify passes if return val unifies
   fields => {
@@ -202,19 +232,19 @@ function entity_history(options: any) {
     }
   }
   // NOTE: => is lazy, : is not - as you need well-defined order of persistence ops and msg calls
-  
-  
+   
+   
   field-keys: \ // multi line value, - in names as just valid JSON "field-keys"
     keys$ data$ out$ data$ prev  // keys$ list uniq keys of objects   
     // data$ is entity.data$, handles null gracefully
     // (keys$ (data$ out$) (data$ prev)) // eager function calls
     // RHS is LISPish :)
-  
+   
   // push$ does not push nils, eq$/3 return /3 or nil (eq$ lhs rhs yesval?true$ noval?nil)
   // eq$ is intelligent and deep - unifies?!
   // prev[field] is nil if prev is nil
   fields: $reduce field-keys [] (changed,field)=>push$ changed eq$ out$[field] prev[field] field
-  
+   
   // save$ implicitly async
   entver: save$ sys/entver {
     ent_id: out$.id // RHS also an s-exp
@@ -224,7 +254,7 @@ function entity_history(options: any) {
     when: now$
     d: data$ out$
   }
-  
+   
   // throw away result
   : save$ sys/enthist {
     ver_id: entver.id
@@ -234,15 +264,15 @@ function entity_history(options: any) {
     name: canon.name
     when: entver.when
   }
-  
+   
   // even top level is LISP really
-  
+   
   foo: bar
   (set$ 'foo' 'bar')  // where set operates on current context
   (set$ path expr)  // where set operates on current context
-  
+   
   // NOTE: set$ performs a unify at path point
-  
+   
   // possible engines:
   // https://github.com/maryrosecook/littlelisp/blob/master/littlelisp.js
   // https://jcubic.github.io/lips/
@@ -278,7 +308,7 @@ function entity_history(options: any) {
       },
       res_ent: {
         resver_id: '',
-        data$: (d: any) => {},
+        data$: (d: any) => { },
         save$: async () => ({}),
       },
       out$: {
@@ -316,35 +346,35 @@ function entity_history(options: any) {
     return work.out$
 
     /*
-
-# entity:restore
-
-// maybe just use msg, out, and reserve suffix $ for built in functions?
-msg$:
+  
+  # entity:restore
+  
+  // maybe just use msg, out, and reserve suffix $ for built in functions?
+  msg$:
   ent:
     ent_id: string
     ver_id: string
     base: string
     name: string,
-
-entverq:
+  
+  entverq:
   ent_id: msg$.ent.ent_id
   id: msg$.ent.ver_id
   base: msg$.ent.base
   name: msg$.ent.name
-
-ent_ver: load$ sys/entvar entverq
-
-if$ ent_ver 
+  
+  ent_ver: load$ sys/entvar entverq
+  
+  if$ ent_ver 
   res_ent: load$ (+ msg.ent.base '/' msg.ent.name) msg.ent.ent_id
-
+  
   if$ res_ent
     data$ res_ent work.ent_ver.d  // implicit throwaway
     res_ent.resver_id: msg.ent.ver_id
     out$.item: save$ res_ent
-
-// OR
-out$.item: 
+  
+  // OR
+  out$.item: 
   save$
     data$
       load$ (+ msg.ent.base '/' msg.ent.name) msg.ent.ent_id
@@ -356,9 +386,9 @@ out$.item:
       // MAYBE: {} | .d load$ sys/entvar entverq
       //  as X | nil === X ???
       // is nil bottom? don't think so as not an error
-
-out$.ok = null != out$.item
-
+  
+  out$.ok = null != out$.item
+  
     */
   }
 

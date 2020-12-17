@@ -5,6 +5,9 @@
 /* $lab:coverage:on$ */
 
 
+// TODO: support pattern:
+// `sys:entity,rig:history,base,name,id`
+
 export async function entity_history_msg(msg: {
   ent: {
     id: string
