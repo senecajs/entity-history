@@ -32,7 +32,7 @@ module.exports = {
       },
     }),
 
-    { pattern: 'role:mem-store,cmd:dump' },
+    // { pattern: 'role:mem-store,cmd:dump' },
 
     LN({
       pattern: 'entity:history',
@@ -45,7 +45,15 @@ module.exports = {
       },
       out: {
         ok: true,
-        items: [{ ent_id: 'f01', fields: [], base: 'zed', name: 'foo' }],
+        items: [{
+          ent_id: 'f01',
+          c_version: 0,
+          prev_ver_id: '',
+          fields: [],
+          changed: [],
+          base: 'zed',
+          name: 'foo'
+        }],
       },
     }),
 
@@ -71,6 +79,7 @@ module.exports = {
     // { print: true, pattern: 'role:mem-store,cmd:dump' },
 
     LN({
+      // print: true,
       name: 'h0',
       pattern: 'entity:history',
       params: {
@@ -79,23 +88,41 @@ module.exports = {
           base: 'zed',
           name: 'foo',
         },
+        data: true,
       },
       out: {
         ok: true,
         items: [
-          { ent_id: 'f01', fields: ['x'], base: 'zed', name: 'foo' },
-          { ent_id: 'f01', fields: [], base: 'zed', name: 'foo' },
+          {
+            ent_id: 'f01',
+            fields: ['x'],
+            changed: ['x'],
+            base: 'zed',
+            name: 'foo',
+            c_version: 1,
+            prev_ver_id: '`h0:out.items[1].id`',
+          },
+          {
+            ent_id: 'f01',
+            fields: [],
+            changed: [],
+            base: 'zed',
+            name: 'foo',
+            c_version: 0,
+            prev_ver_id: '',
+          },
         ],
       },
     }),
 
+    // load by specific version
     LN({
       // print: true,
       pattern: 'entity:load',
       params: {
         ent: {
           ent_id: 'f01',
-          ver_id: '`h0:out.items[0].ver_id`',
+          ver_id: '`h0:out.items[0].id`',
           base: 'zed',
           name: 'foo',
         },
@@ -106,13 +133,34 @@ module.exports = {
       },
     }),
 
+    // { print:true, pattern: 'role:mem-store,cmd:dump' },
+    
+    // load by current version
+    LN({
+      // print: true,
+      pattern: 'entity:load',
+      params: {
+        ent: {
+          ent_id: 'f01',
+          base: 'zed',
+          name: 'foo',
+        },
+      },
+      out: {
+        ok: true,
+        item: { entity$: '-/zed/foo', x: 2, y: 'y01', id: 'f01' },
+        entver: { is_finder: true, id: 'f01' }
+      },
+    }),
+
+    
     LN({
       // print: true,
       pattern: 'entity:load',
       params: {
         ent: {
           id: 'f01',
-          ver_id: '`h0:out.items[1].ver_id`',
+          ver_id: '`h0:out.items[1].id`',
           base: 'zed',
           name: 'foo',
         },
@@ -129,7 +177,7 @@ module.exports = {
       params: {
         ent: {
           id: 'f01',
-          ver_id: '`h0:out.items[1].ver_id`',
+          ver_id: '`h0:out.items[1].id`',
           base: 'zed',
           name: 'foo',
         },
@@ -141,7 +189,6 @@ module.exports = {
           x: 1,
           y: 'y01',
           id: 'f01',
-          resver_id: '`h0:out.items[1].ver_id`',
         },
       },
     }),
@@ -159,9 +206,9 @@ module.exports = {
       out: {
         ok: true,
         items: [
-          { ent_id: 'f01', fields: ['x'], base: 'zed', name: 'foo' },
-          { ent_id: 'f01', fields: ['x'], base: 'zed', name: 'foo' },
-          { ent_id: 'f01', fields: [], base: 'zed', name: 'foo' },
+          { ent_id: 'f01', fields: ['x'], changed: ['x'], base: 'zed', name: 'foo' },
+          { ent_id: 'f01', fields: ['x'], changed: ['x'], base: 'zed', name: 'foo' },
+          { ent_id: 'f01', fields: [], changed: [], base: 'zed', name: 'foo' },
         ],
       },
     }),
@@ -184,10 +231,11 @@ module.exports = {
       out: {
         ok: true,
         items: [
-          { ent_id: 'f01', fields: ['x'], base: 'zed', name: 'foo' },
-          { ent_id: 'f01', fields: ['x'], base: 'zed', name: 'foo' },
+          { ent_id: 'f01', fields: ['x'], changed: [], base: 'zed', name: 'foo' },
+          { ent_id: 'f01', fields: ['x'], changed: [], base: 'zed', name: 'foo' },
         ],
         changed: ['x'],
+        fields: ['x'],
       },
     }),
   ],

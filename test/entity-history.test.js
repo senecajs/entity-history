@@ -48,7 +48,8 @@ lab.test('happy', async () => {
     ent_id: b01.id,
     base: 'zed',
     name: 'bar',
-    fields: [],
+    fields: ['x', 'y', 'rtag', 'id'],
+    changed: [],
     ent_rtag: 'r01',
     prev_rtag: '',
     who: { name: 'alice' },
@@ -71,7 +72,8 @@ lab.test('happy', async () => {
     ent_id: b01.id,
     base: 'zed',
     name: 'bar',
-    fields: ['x', 'rtag'],
+    fields: ['x', 'y', 'rtag', 'id'],
+    changed: ['x', 'rtag'],
     prev_rtag: 'r01',
     ent_rtag: 'r02',
   })
@@ -79,7 +81,8 @@ lab.test('happy', async () => {
     ent_id: b01.id,
     base: 'zed',
     name: 'bar',
-    fields: [],
+    fields: [ 'x', 'y', 'rtag', 'id' ],
+    changed: [],
     ent_rtag: 'r01',
     prev_rtag: '',
   })
@@ -101,25 +104,27 @@ lab.test('happy', async () => {
     x: 1,
     y: 'Y1',
     rtag: 'r01',
-    resver_id: v0.ver_id,
   })
 
   let b01r = await seneca.entity('zed/bar').load$(b01.id)
   // console.log(b01r)
-  expect(b01r).includes({ x: 1, y: 'Y1', rtag: 'r01', resver_id: v0.ver_id })
+  expect(b01r).includes({ x: 1, y: 'Y1', rtag: 'r01' })
 
   await seneca.ready() // history saving is parallel
   let hl2 = await seneca.post('sys:entity,rig:history,entity:history', {
     ent: b01,
+    data: true,
   })
-  // console.log(hl2)
+  //console.dir(hl2,{depth:null})
   expect(hl2.items.length).equal(3)
   expect(hl2.items[0]).includes({
     ent_rtag: 'r01',
     prev_rtag: 'r02',
-    fields: ['x', 'rtag'],
+    fields: [ 'x', 'y', 'rtag', 'id' ],
+    changed: [ 'x', 'rtag' ],
     base: 'zed',
     name: 'bar',
+    is_restore: true,
   })
 })
 

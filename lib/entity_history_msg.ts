@@ -2,11 +2,10 @@
 /* $lab:coverage:off$ */
 'use strict'
 
+import intern from './intern'
+
 /* $lab:coverage:on$ */
 
-
-// TODO: support pattern:
-// `sys:entity,rig:history,base,name,id`
 
 export async function entity_history_msg(msg: {
   ent: {
@@ -17,6 +16,7 @@ export async function entity_history_msg(msg: {
   }
 
   size: number // number of history entries to load, ignored if diff
+  data: boolean // include version data
 
   // if defined
   diff: {
@@ -47,25 +47,37 @@ export async function entity_history_msg(msg: {
     entq.name = canon.name
   }
 
+
+  // don't load data field `d` unless requested
+  let fields = intern.entver_fields.concat(msg.data ? ['d'] : [])
+
   let work = {
     histq: {
       ent_id: entq.id,
       base: entq.base,
       name: entq.name,
       when: undefined as any,
+      is_finder: false,
       sort$: { when: -1 },
       limit$: (size as number | undefined),
+      fields$: fields,
     },
     diff_ent: undefined,
     out: {
       ok: false,
       items: [],
       changed: ([] as any[]),
+      fields: ([] as any[]),
     },
   }
 
   if (diff && diff.ver_id) {
-    work.diff_ent = await seneca.entity('sys/enthist').load$(diff.ver_id)
+
+    work.diff_ent = await seneca.entity('sys/entver').load$({
+      id: diff.ver_id,
+      fields$: intern.entver_fields, // don't load data field `d`
+    })
+
     if (null == work.diff_ent) {
       seneca.fail('diff-entity-not-found')
     }
@@ -78,11 +90,20 @@ export async function entity_history_msg(msg: {
     delete work.histq.when
   }
 
-  work.out.items = await seneca.entity('sys/enthist').list$(work.histq)
+  work.out.items = await seneca.entity('sys/entver').list$(work.histq)
 
   if (diff) {
     // union of changed fields
     work.out.changed = [
+      ...new Set(
+        work.out.items
+          .reduce((c: any[], item: any) =>
+            (c.push(...item.changed), c), [])
+      )
+    ]
+
+    // union of all fields
+    work.out.fields = [
       ...new Set(
         work.out.items
           .reduce((c: any[], item: any) =>

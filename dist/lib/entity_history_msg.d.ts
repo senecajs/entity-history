@@ -6,6 +6,7 @@ export declare function entity_history_msg(msg: {
         canon$: any;
     };
     size: number;
+    data: boolean;
     diff: {
         ver_id: string;
         ents: boolean;
@@ -14,4 +15,5 @@ export declare function entity_history_msg(msg: {
     ok: boolean;
     items: never[];
     changed: any[];
+    fields: any[];
 }>;

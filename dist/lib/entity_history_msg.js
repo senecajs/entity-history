@@ -1,11 +1,13 @@
 /* Copyright (c) 2020 voxgig and other contributors, MIT License */
 /* $lab:coverage:off$ */
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.entity_history_msg = void 0;
+const intern_1 = __importDefault(require("./intern"));
 /* $lab:coverage:on$ */
-// TODO: support pattern:
-// `sys:entity,rig:history,base,name,id`
 async function entity_history_msg(msg) {
     let seneca = this;
     let size = msg.size || 111;
@@ -24,24 +26,32 @@ async function entity_history_msg(msg) {
         entq.base = canon.base;
         entq.name = canon.name;
     }
+    // don't load data field `d` unless requested
+    let fields = intern_1.default.entver_fields.concat(msg.data ? ['d'] : []);
     let work = {
         histq: {
             ent_id: entq.id,
             base: entq.base,
             name: entq.name,
             when: undefined,
+            is_finder: false,
             sort$: { when: -1 },
             limit$: size,
+            fields$: fields,
         },
         diff_ent: undefined,
         out: {
             ok: false,
             items: [],
             changed: [],
+            fields: [],
         },
     };
     if (diff && diff.ver_id) {
-        work.diff_ent = await seneca.entity('sys/enthist').load$(diff.ver_id);
+        work.diff_ent = await seneca.entity('sys/entver').load$({
+            id: diff.ver_id,
+            fields$: intern_1.default.entver_fields,
+        });
         if (null == work.diff_ent) {
             seneca.fail('diff-entity-not-found');
         }
@@ -53,10 +63,15 @@ async function entity_history_msg(msg) {
     else {
         delete work.histq.when;
     }
-    work.out.items = await seneca.entity('sys/enthist').list$(work.histq);
+    work.out.items = await seneca.entity('sys/entver').list$(work.histq);
     if (diff) {
         // union of changed fields
         work.out.changed = [
+            ...new Set(work.out.items
+                .reduce((c, item) => (c.push(...item.changed), c), []))
+        ];
+        // union of all fields
+        work.out.fields = [
             ...new Set(work.out.items
                 .reduce((c, item) => (c.push(...item.fields), c), []))
         ];
