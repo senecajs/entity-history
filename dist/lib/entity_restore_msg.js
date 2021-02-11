@@ -19,7 +19,7 @@ async function entity_restore_msg(msg) {
         },
         res_ent: {
             resver_id: '',
-            data$: (d) => { },
+            data$: (_d) => { },
             save$: async () => ({}),
         },
         out$: {
@@ -27,14 +27,13 @@ async function entity_restore_msg(msg) {
             item: {},
         },
     };
-    // console.log(work.entverq)
     work.ent_ver = await seneca.entity('sys/entver').load$(work.entverq);
-    // console.log('ent_ver', work.entverq, work.ent_ver)
     if (work.ent_ver) {
         work.out$.item = await seneca
             // TODO: seneca-entity should support canon object here
             .entity(msg.ent.base + '/' + msg.ent.name)
-            //.load$(work.entverq.ent_id)
+            .load$(work.entverq.ent_id);
+        work.out$.item = await work.out$.item
             .data$(work.ent_ver.d)
             .data$({
             custom$: {
@@ -42,17 +41,6 @@ async function entity_restore_msg(msg) {
             }
         })
             .save$();
-        // console.log('item', work.out$.item)
-        /*
-        if (work.res_ent) {
-          work.res_ent.data$(work.ent_ver.d)
-    
-          work.res_ent.resver_id = msg.ent.ver_id
-          work.out$.item = await work.res_ent.save$()
-    
-          console.log('res_ent saved', work.out$.item)
-        }
-        */
     }
     work.out$.ok = null != work.out$.item;
     return work.out$;

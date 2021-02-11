@@ -35,10 +35,7 @@ async function entity_load_msg(msg) {
             entver: null
         },
     };
-    // console.log('EH LOAD work init', work)
-    //console.log('ENTVERQ', work.entverq)
     work.ent_ver = await seneca.entity('sys/entver').load$(work.entverq);
-    // console.log('ent_ver', work.ent_ver)
     if (work.ent_ver) {
         work.out$.item = seneca
             .entity(work.entverq.base + '/' + work.entverq.name)

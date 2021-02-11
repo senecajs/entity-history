@@ -552,7 +552,7 @@
             <a href="#dist/lib/entity_load_msg.js"><span class="dirname">dist/lib/</span><span class="basename">entity_load_msg.js</span></a>
         </li>
         <li class="generated">
-            <span class="cov high">95.24</span>
+            <span class="cov high">95.45</span>
             <a href="#dist/lib/entity_restore_msg.js"><span class="dirname">dist/lib/</span><span class="basename">entity_restore_msg.js</span></a>
         </li>
         <li class="generated">
@@ -571,7 +571,7 @@
           <div class="failures">0</div>
           <div class="skipped">0</div>
           <div class="test-count">4</div>
-          <div class="duration">1121</div>
+          <div class="duration">1079</div>
       </div>
       <div id="filters">
           <input type="checkbox" checked="" onchange="filter(this)" value="success" id="show-success">
@@ -594,28 +594,28 @@
               <td class="test-title">validate
                   
               </td>
-              <td class="test-duration">7</td>
+              <td class="test-duration">8</td>
           </tr>
           <tr class="show  success">
               <td class="test-id">2</td>
               <td class="test-title">plugin-load
                   
               </td>
-              <td class="test-duration">263</td>
+              <td class="test-duration">244</td>
           </tr>
           <tr class="show  success">
               <td class="test-id">3</td>
               <td class="test-title">happy
                   
               </td>
-              <td class="test-duration">590</td>
+              <td class="test-duration">573</td>
           </tr>
           <tr class="show  success">
               <td class="test-id">4</td>
               <td class="test-title">messages
                   
               </td>
-              <td class="test-duration">250</td>
+              <td class="test-duration">244</td>
           </tr>
           </tbody>
       </table>
@@ -623,9 +623,9 @@
     </div>    <div id="coverage">
         <h1>Code Coverage Report</h1>
         <div class="stats high">
-            <div class="percentage">94.86%</div>
-            <div class="sloc">331</div>
-            <div class="hits">314</div>
+            <div class="percentage">94.89%</div>
+            <div class="sloc">333</div>
+            <div class="hits">316</div>
             <div class="misses">17</div>
         </div>
         <div id="filters">
@@ -1747,95 +1747,77 @@
                         </tr>            <tr id="dist/lib/entity_load_msg.js__38" class="hit">
                           <td class="line" data-tooltip>38</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    // console.log(&#x27;EH LOAD work init&#x27;, work)</td>
+                          <td class="hits" data-tooltip>3</td>
+                          <td class="source">    work.ent_ver &#x3D; await seneca.entity(&#x27;sys/entver&#x27;).load$(work.entverq);</td>
                           <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__56">56</a></td>
-                        </tr>            <tr id="dist/lib/entity_load_msg.js__39" class="hit">
+                        </tr>            <tr id="dist/lib/entity_load_msg.js__39" class="chunks">
                           <td class="line" data-tooltip>39</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    //console.log(&#x27;ENTVERQ&#x27;, work.entverq)</td>
+                          <td class="source"><div>    if (</div><div class="miss true" data-tooltip>work.ent_ver</div><div>) {</div></td>
                           <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__58">58</a></td>
                         </tr>            <tr id="dist/lib/entity_load_msg.js__40" class="hit">
                           <td class="line" data-tooltip>40</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>3</td>
-                          <td class="source">    work.ent_ver &#x3D; await seneca.entity(&#x27;sys/entver&#x27;).load$(work.entverq);</td>
+                          <td class="source">        work.out$.item &#x3D; seneca</td>
                           <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__59">59</a></td>
                         </tr>            <tr id="dist/lib/entity_load_msg.js__41" class="hit">
                           <td class="line" data-tooltip>41</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    // console.log(&#x27;ent_ver&#x27;, work.ent_ver)</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__61">61</a></td>
-                        </tr>            <tr id="dist/lib/entity_load_msg.js__42" class="chunks">
+                          <td class="source">            .entity(work.entverq.base + &#x27;/&#x27; + work.entverq.name)</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__60">60</a></td>
+                        </tr>            <tr id="dist/lib/entity_load_msg.js__42" class="hit">
                           <td class="line" data-tooltip>42</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source"><div>    if (</div><div class="miss true" data-tooltip>work.ent_ver</div><div>) {</div></td>
-                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__63">63</a></td>
+                          <td class="source">            .data$(work.ent_ver.d);</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__61">61</a></td>
                         </tr>            <tr id="dist/lib/entity_load_msg.js__43" class="hit">
                           <td class="line" data-tooltip>43</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>3</td>
-                          <td class="source">        work.out$.item &#x3D; seneca</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__64">64</a></td>
+                          <td class="source">        work.out$.entver &#x3D; work.ent_ver;</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__63">63</a></td>
                         </tr>            <tr id="dist/lib/entity_load_msg.js__44" class="hit">
                           <td class="line" data-tooltip>44</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">            .entity(work.entverq.base + &#x27;/&#x27; + work.entverq.name)</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__65">65</a></td>
+                          <td class="hits" data-tooltip>3</td>
+                          <td class="source">        delete work.out$.entver.d;</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__64">64</a></td>
                         </tr>            <tr id="dist/lib/entity_load_msg.js__45" class="hit">
                           <td class="line" data-tooltip>45</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            .data$(work.ent_ver.d);</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__66">66</a></td>
+                          <td class="source">    }</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__65">65</a></td>
                         </tr>            <tr id="dist/lib/entity_load_msg.js__46" class="hit">
                           <td class="line" data-tooltip>46</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>3</td>
-                          <td class="source">        work.out$.entver &#x3D; work.ent_ver;</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__68">68</a></td>
+                          <td class="source">    work.out$.ok &#x3D; null !&#x3D; work.out$.item;</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__67">67</a></td>
                         </tr>            <tr id="dist/lib/entity_load_msg.js__47" class="hit">
                           <td class="line" data-tooltip>47</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>3</td>
-                          <td class="source">        delete work.out$.entver.d;</td>
+                          <td class="source">    return work.out$;</td>
                           <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__69">69</a></td>
                         </tr>            <tr id="dist/lib/entity_load_msg.js__48" class="hit">
                           <td class="line" data-tooltip>48</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
+                          <td class="source">}</td>
                           <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__70">70</a></td>
                         </tr>            <tr id="dist/lib/entity_load_msg.js__49" class="hit">
                           <td class="line" data-tooltip>49</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>3</td>
-                          <td class="source">    work.out$.ok &#x3D; null !&#x3D; work.out$.item;</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__72">72</a></td>
-                        </tr>            <tr id="dist/lib/entity_load_msg.js__50" class="hit">
-                          <td class="line" data-tooltip>50</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>3</td>
-                          <td class="source">    return work.out$;</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__74">74</a></td>
-                        </tr>            <tr id="dist/lib/entity_load_msg.js__51" class="hit">
-                          <td class="line" data-tooltip>51</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">}</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__75">75</a></td>
-                        </tr>            <tr id="dist/lib/entity_load_msg.js__52" class="hit">
-                          <td class="line" data-tooltip>52</td>
-                          <td class="lint empty"></td>
                           <td class="hits" data-tooltip>1</td>
                           <td class="source">exports.entity_load_msg &#x3D; entity_load_msg;</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__75">75</a></td>
-                        </tr>            <tr id="dist/lib/entity_load_msg.js__53" class="hit">
-                          <td class="line" data-tooltip>53</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_load_msg.ts"><a href="#../../lib/entity_load_msg.ts__70">70</a></td>
+                        </tr>            <tr id="dist/lib/entity_load_msg.js__50" class="hit">
+                          <td class="line" data-tooltip>50</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
                           <td class="source">//# sourceMappingURL&#x3D;entity_load_msg.js.map</td>
@@ -1846,9 +1828,9 @@
             <div class="file show generated">
                 <h2 id="dist/lib/entity_restore_msg.js">dist/lib/entity_restore_msg.js </h2>
                 <div class="stats high">
-                    <div class="percentage">95.24%</div>
-                    <div class="sloc">42</div>
-                    <div class="hits">40</div>
+                    <div class="percentage">95.45%</div>
+                    <div class="sloc">44</div>
+                    <div class="hits">42</div>
                     <div class="misses">2</div>
                 </div>
                 <table>
@@ -1992,7 +1974,7 @@
                           <td class="line" data-tooltip>22</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            data$: (d) &#x3D;&gt; { },</td>
+                          <td class="source">            data$: (_d) &#x3D;&gt; { },</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__32">32</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__23" class="chunks">
                           <td class="line" data-tooltip>23</td>
@@ -2039,191 +2021,119 @@
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__30" class="hit">
                           <td class="line" data-tooltip>30</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    // console.log(work.entverq)</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__41">41</a></td>
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__31" class="hit">
-                          <td class="line" data-tooltip>31</td>
-                          <td class="lint empty"></td>
                           <td class="hits" data-tooltip>2</td>
                           <td class="source">    work.ent_ver &#x3D; await seneca.entity(&#x27;sys/entver&#x27;).load$(work.entverq);</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__42">42</a></td>
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__32" class="hit">
-                          <td class="line" data-tooltip>32</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    // console.log(&#x27;ent_ver&#x27;, work.entverq, work.ent_ver)</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__44">44</a></td>
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__33" class="chunks">
-                          <td class="line" data-tooltip>33</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__41">41</a></td>
+                        </tr>            <tr id="dist/lib/entity_restore_msg.js__31" class="chunks">
+                          <td class="line" data-tooltip>31</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
                           <td class="source"><div>    if (</div><div class="miss true" data-tooltip>work.ent_ver</div><div>) {</div></td>
+                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__43">43</a></td>
+                        </tr>            <tr id="dist/lib/entity_restore_msg.js__32" class="hit">
+                          <td class="line" data-tooltip>32</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>2</td>
+                          <td class="source">        work.out$.item &#x3D; await seneca</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__44">44</a></td>
+                        </tr>            <tr id="dist/lib/entity_restore_msg.js__33" class="hit">
+                          <td class="line" data-tooltip>33</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            // TODO: seneca-entity should support canon object here</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__46">46</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__34" class="hit">
                           <td class="line" data-tooltip>34</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>2</td>
-                          <td class="source">        work.out$.item &#x3D; await seneca</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            .entity(msg.ent.base + &#x27;/&#x27; + msg.ent.name)</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__47">47</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__35" class="hit">
                           <td class="line" data-tooltip>35</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            // TODO: seneca-entity should support canon object here</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__49">49</a></td>
+                          <td class="source">            .load$(work.entverq.ent_id);</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__48">48</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__36" class="hit">
                           <td class="line" data-tooltip>36</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">            .entity(msg.ent.base + &#x27;/&#x27; + msg.ent.name)</td>
+                          <td class="hits" data-tooltip>2</td>
+                          <td class="source">        work.out$.item &#x3D; await work.out$.item</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__50">50</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__37" class="hit">
                           <td class="line" data-tooltip>37</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            //.load$(work.entverq.ent_id)</td>
+                          <td class="source">            .data$(work.ent_ver.d)</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__51">51</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__38" class="hit">
                           <td class="line" data-tooltip>38</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            .data$(work.ent_ver.d)</td>
+                          <td class="source">            .data$({</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__52">52</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__39" class="hit">
                           <td class="line" data-tooltip>39</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            .data$({</td>
+                          <td class="source">            custom$: {</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__53">53</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__40" class="hit">
                           <td class="line" data-tooltip>40</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            custom$: {</td>
+                          <td class="source">                res_ver_id: work.ent_ver.id</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__54">54</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__41" class="hit">
                           <td class="line" data-tooltip>41</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">                res_ver_id: work.ent_ver.id</td>
+                          <td class="source">            }</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__55">55</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__42" class="hit">
                           <td class="line" data-tooltip>42</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            }</td>
+                          <td class="source">        })</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__56">56</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__43" class="hit">
                           <td class="line" data-tooltip>43</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        })</td>
+                          <td class="source">            .save$();</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__57">57</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__44" class="hit">
                           <td class="line" data-tooltip>44</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            .save$();</td>
+                          <td class="source">    }</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__58">58</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__45" class="hit">
                           <td class="line" data-tooltip>45</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        // console.log(&#x27;item&#x27;, work.out$.item)</td>
+                          <td class="hits" data-tooltip>2</td>
+                          <td class="source">    work.out$.ok &#x3D; null !&#x3D; work.out$.item;</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__60">60</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__46" class="hit">
                           <td class="line" data-tooltip>46</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        /*</td>
+                          <td class="hits" data-tooltip>2</td>
+                          <td class="source">    return work.out$;</td>
                           <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__62">62</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__47" class="hit">
                           <td class="line" data-tooltip>47</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        if (work.res_ent) {</td>
-                          
+                          <td class="source">}</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__64">64</a></td>
                         </tr>            <tr id="dist/lib/entity_restore_msg.js__48" class="hit">
                           <td class="line" data-tooltip>48</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">          work.res_ent.data$(work.ent_ver.d)</td>
-                          
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__49" class="hit">
-                          <td class="line" data-tooltip>49</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    </td>
-                          
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__50" class="hit">
-                          <td class="line" data-tooltip>50</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">          work.res_ent.resver_id &#x3D; msg.ent.ver_id</td>
-                          
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__51" class="hit">
-                          <td class="line" data-tooltip>51</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">          work.out$.item &#x3D; await work.res_ent.save$()</td>
-                          
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__52" class="hit">
-                          <td class="line" data-tooltip>52</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    </td>
-                          
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__53" class="hit">
-                          <td class="line" data-tooltip>53</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">          console.log(&#x27;res_ent saved&#x27;, work.out$.item)</td>
-                          
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__54" class="hit">
-                          <td class="line" data-tooltip>54</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        }</td>
-                          
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__55" class="hit">
-                          <td class="line" data-tooltip>55</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        */</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__71">71</a></td>
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__56" class="hit">
-                          <td class="line" data-tooltip>56</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    }</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__72">72</a></td>
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__57" class="hit">
-                          <td class="line" data-tooltip>57</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>2</td>
-                          <td class="source">    work.out$.ok &#x3D; null !&#x3D; work.out$.item;</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__74">74</a></td>
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__58" class="hit">
-                          <td class="line" data-tooltip>58</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>2</td>
-                          <td class="source">    return work.out$;</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__76">76</a></td>
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__59" class="hit">
-                          <td class="line" data-tooltip>59</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">}</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__78">78</a></td>
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__60" class="hit">
-                          <td class="line" data-tooltip>60</td>
-                          <td class="lint empty"></td>
                           <td class="hits" data-tooltip>1</td>
                           <td class="source">exports.entity_restore_msg &#x3D; entity_restore_msg;</td>
-                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__78">78</a></td>
-                        </tr>            <tr id="dist/lib/entity_restore_msg.js__61" class="hit">
-                          <td class="line" data-tooltip>61</td>
+                          <td class="original-line" data-tooltip="../../lib/entity_restore_msg.ts"><a href="#../../lib/entity_restore_msg.ts__64">64</a></td>
+                        </tr>            <tr id="dist/lib/entity_restore_msg.js__49" class="hit">
+                          <td class="line" data-tooltip>49</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
                           <td class="source">//# sourceMappingURL&#x3D;entity_restore_msg.js.map</td>
@@ -2992,275 +2902,275 @@
                           <td class="hits" data-tooltip>14</td>
                           <td class="source">                let pt &#x3D; typeof pv;</td>
                           <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__54">54</a></td>
-                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__38" class="hit">
+                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__38" class="chunks">
                           <td class="line" data-tooltip>38</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">                // console.log(&#x27;F&#x27;, fn, ov, pv, ot, pt)</td>
+                          <td class="source"><div>                if (</div><div class="miss true" data-tooltip>null !&#x3D; ov</div><div> || </div><div class="miss never" data-tooltip>null !&#x3D; pv</div><div>) {</div></td>
                           <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__56">56</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__39" class="chunks">
                           <td class="line" data-tooltip>39</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source"><div>                if (</div><div class="miss true" data-tooltip>null !&#x3D; ov</div><div> || </div><div class="miss never" data-tooltip>null !&#x3D; pv</div><div>) {</div></td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__58">58</a></td>
-                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__40" class="chunks">
+                          <td class="source"><div>                    if (</div><div class="miss false" data-tooltip>&#x27;object&#x27; &#x3D;&#x3D;&#x3D; ot</div><div> &amp;&amp; </div><div class="miss never" data-tooltip>&#x27;object&#x27; &#x3D;&#x3D;&#x3D; pt</div><div>) {</div></td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__57">57</a></td>
+                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__40" class="miss">
                           <td class="line" data-tooltip>40</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source"><div>                    if (</div><div class="miss false" data-tooltip>&#x27;object&#x27; &#x3D;&#x3D;&#x3D; ot</div><div> &amp;&amp; </div><div class="miss never" data-tooltip>&#x27;object&#x27; &#x3D;&#x3D;&#x3D; pt</div><div>) {</div></td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__59">59</a></td>
-                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__41" class="miss">
+                          <td class="source" data-tooltip>                        changed.push(fn); // TODO: proper object data equiv test</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__58">58</a></td>
+                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__41" class="hit">
                           <td class="line" data-tooltip>41</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source" data-tooltip>                        changed.push(fn); // TODO: proper object data equiv test</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__60">60</a></td>
+                          <td class="source">                    }</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__59">59</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__42" class="hit">
                           <td class="line" data-tooltip>42</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>14</td>
+                          <td class="source">                    else if (ov !&#x3D;&#x3D; pv) {</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__59">59</a></td>
+                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__43" class="hit">
+                          <td class="line" data-tooltip>43</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>6</td>
+                          <td class="source">                        changed.push(fn);</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__60">60</a></td>
+                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__44" class="hit">
+                          <td class="line" data-tooltip>44</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
                           <td class="source">                    }</td>
                           <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__61">61</a></td>
-                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__43" class="hit">
-                          <td class="line" data-tooltip>43</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>14</td>
-                          <td class="source">                    else if (ov !&#x3D;&#x3D; pv) {</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__61">61</a></td>
-                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__44" class="hit">
-                          <td class="line" data-tooltip>44</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>6</td>
-                          <td class="source">                        changed.push(fn);</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__62">62</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__45" class="hit">
                           <td class="line" data-tooltip>45</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">                    }</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__63">63</a></td>
+                          <td class="source">                }</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__62">62</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__46" class="hit">
                           <td class="line" data-tooltip>46</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">                }</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__64">64</a></td>
+                          <td class="source">            });</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__63">63</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__47" class="hit">
                           <td class="line" data-tooltip>47</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            });</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__65">65</a></td>
+                          <td class="source">        }</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__64">64</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__48" class="hit">
                           <td class="line" data-tooltip>48</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        }</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__66">66</a></td>
+                          <td class="hits" data-tooltip>6</td>
+                          <td class="source">        let who &#x3D; null &#x3D;&#x3D; options.build_who</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__67">67</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__49" class="hit">
                           <td class="line" data-tooltip>49</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        // console.log(&#x27;SAVE HIST PREV&#x27;, !!entprev, fields)</td>
+                          <td class="source">            ? {}</td>
                           <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__68">68</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__50" class="hit">
                           <td class="line" data-tooltip>50</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>6</td>
-                          <td class="source">        let who &#x3D; null &#x3D;&#x3D; options.build_who</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__71">71</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            : options.build_who.call(this, entprev, changed, entout, ...arguments);</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__69">69</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__51" class="hit">
                           <td class="line" data-tooltip>51</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">            ? {}</td>
+                          <td class="hits" data-tooltip>6</td>
+                          <td class="source">        let what &#x3D; null &#x3D;&#x3D; options.build_who</td>
                           <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__72">72</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__52" class="hit">
                           <td class="line" data-tooltip>52</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            : options.build_who.call(this, entprev, changed, entout, ...arguments);</td>
+                          <td class="source">            ? {}</td>
                           <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__73">73</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__53" class="hit">
                           <td class="line" data-tooltip>53</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>6</td>
-                          <td class="source">        let what &#x3D; null &#x3D;&#x3D; options.build_who</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__76">76</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            : options.build_what.call(this, entprev, changed, entout, ...arguments);</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__74">74</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__54" class="hit">
                           <td class="line" data-tooltip>54</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">            ? {}</td>
+                          <td class="hits" data-tooltip>6</td>
+                          <td class="source">        let histspec &#x3D; {</td>
                           <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__77">77</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__55" class="hit">
                           <td class="line" data-tooltip>55</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            : options.build_what.call(this, entprev, changed, entout, ...arguments);</td>
+                          <td class="source">            seneca,</td>
                           <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__78">78</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__56" class="hit">
                           <td class="line" data-tooltip>56</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        // console.log(&#x27;MSG ENT CUSTOM&#x27;, msg.ent.custom$)</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__81">81</a></td>
+                          <td class="source">            entmsg: msg.ent,</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__79">79</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__57" class="hit">
                           <td class="line" data-tooltip>57</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>6</td>
-                          <td class="source">        let histspec &#x3D; {</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__83">83</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            entout,</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__80">80</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__58" class="hit">
                           <td class="line" data-tooltip>58</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            seneca,</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__84">84</a></td>
+                          <td class="source">            entprev,</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__81">81</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__59" class="hit">
                           <td class="line" data-tooltip>59</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            entmsg: msg.ent,</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__85">85</a></td>
+                          <td class="source">            changed,</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__82">82</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__60" class="hit">
                           <td class="line" data-tooltip>60</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            entout,</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__86">86</a></td>
+                          <td class="source">            who,</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__83">83</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__61" class="hit">
                           <td class="line" data-tooltip>61</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            entprev,</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__87">87</a></td>
+                          <td class="source">            what,</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__84">84</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__62" class="hit">
                           <td class="line" data-tooltip>62</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            changed,</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__88">88</a></td>
+                          <td class="source">        };</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__85">85</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__63" class="hit">
                           <td class="line" data-tooltip>63</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            who,</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__89">89</a></td>
+                          <td class="source">        // don&#x27;t wait for version handling to complete, unless options.wait</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__87">87</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__64" class="hit">
                           <td class="line" data-tooltip>64</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">            what,</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__90">90</a></td>
+                          <td class="hits" data-tooltip>6</td>
+                          <td class="source">        if (options.wait) {</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__88">88</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__65" class="hit">
                           <td class="line" data-tooltip>65</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        };</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__91">91</a></td>
+                          <td class="hits" data-tooltip>3</td>
+                          <td class="source">            await intern_1.default.history(histspec);</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__89">89</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__66" class="hit">
                           <td class="line" data-tooltip>66</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        // don&#x27;t wait for version handling to complete, unless options.wait</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__93">93</a></td>
+                          <td class="source">        }</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__90">90</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__67" class="hit">
                           <td class="line" data-tooltip>67</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>6</td>
-                          <td class="source">        if (options.wait) {</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__94">94</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        else {</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__91">91</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__68" class="hit">
                           <td class="line" data-tooltip>68</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>3</td>
-                          <td class="source">            await intern_1.default.history(histspec);</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__95">95</a></td>
+                          <td class="source">            intern_1.default.history(histspec);</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__92">92</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__69" class="hit">
                           <td class="line" data-tooltip>69</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">            // console.log(&#x27;HIST DONE&#x27;)</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__96">96</a></td>
+                          <td class="source">        }</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__93">93</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__70" class="hit">
                           <td class="line" data-tooltip>70</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">        }</td>
+                          <td class="hits" data-tooltip>6</td>
+                          <td class="source">        return entout;</td>
                           <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__97">97</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__71" class="hit">
                           <td class="line" data-tooltip>71</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        else {</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__98">98</a></td>
+                          <td class="source">        /*</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__99">99</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__72" class="hit">
                           <td class="line" data-tooltip>72</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>3</td>
-                          <td class="source">            intern_1.default.history(histspec);</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__99">99</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">          </td>
+                          
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__73" class="hit">
                           <td class="line" data-tooltip>73</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        }</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__100">100</a></td>
+                          <td class="source">          # sys:entity,cmd:save</td>
+                          
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__74" class="hit">
                           <td class="line" data-tooltip>74</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>6</td>
-                          <td class="source">        return entout;</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__104">104</a></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">          </td>
+                          
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__75" class="hit">
                           <td class="line" data-tooltip>75</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        /*</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__106">106</a></td>
+                          <td class="source">          // msg$ is a special name - will attempt to unify with seneca inbound message</td>
+                          
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__76" class="hit">
                           <td class="line" data-tooltip>76</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          msg$:</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__77" class="hit">
                           <td class="line" data-tooltip>77</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          # sys:entity,cmd:save</td>
+                          <td class="source">          ent:</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__78" class="hit">
                           <td class="line" data-tooltip>78</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          id: null | string</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__79" class="hit">
                           <td class="line" data-tooltip>79</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // msg$ is a special name - will attempt to unify with seneca inbound message</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__80" class="hit">
                           <td class="line" data-tooltip>80</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          msg$:</td>
+                          <td class="source">          out$: Entity // Entity is a type declatation, external provided</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__81" class="hit">
                           <td class="line" data-tooltip>81</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          ent:</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__82" class="hit">
                           <td class="line" data-tooltip>82</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          id: null | string</td>
+                          <td class="source">          prev: load$ msg$.ent.entity$ msg$.ent.id</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__83" class="hit">
                           <td class="line" data-tooltip>83</td>
@@ -3272,19 +3182,19 @@
                           <td class="line" data-tooltip>84</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          out$: Entity // Entity is a type declatation, external provided</td>
+                          <td class="source">          // null result will fail as cannot unify with Entity</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__85" class="hit">
                           <td class="line" data-tooltip>85</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          out$: prior$</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__86" class="hit">
                           <td class="line" data-tooltip>86</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          prev: load$ msg$.ent.entity$ msg$.ent.id</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__87" class="hit">
                           <td class="line" data-tooltip>87</td>
@@ -3296,13 +3206,13 @@
                           <td class="line" data-tooltip>88</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // null result will fail as cannot unify with Entity</td>
+                          <td class="source">          // conditionals</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__89" class="hit">
                           <td class="line" data-tooltip>89</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          out$: prior$</td>
+                          <td class="source">          result: if$ expr0 expr1</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__90" class="hit">
                           <td class="line" data-tooltip>90</td>
@@ -3314,97 +3224,97 @@
                           <td class="line" data-tooltip>91</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          // throwaway</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__92" class="hit">
                           <td class="line" data-tooltip>92</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // conditionals</td>
+                          <td class="source">          : if$ expr0 expr1</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__93" class="hit">
                           <td class="line" data-tooltip>93</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          result: if$ expr0 expr1</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__94" class="hit">
                           <td class="line" data-tooltip>94</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          // implicit throwaway</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__95" class="hit">
                           <td class="line" data-tooltip>95</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // throwaway</td>
+                          <td class="source">          if$ expr0 expr1</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__96" class="hit">
                           <td class="line" data-tooltip>96</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          : if$ expr0 expr1</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__97" class="hit">
                           <td class="line" data-tooltip>97</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          // expr0 is truthy: true is non-nil</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__98" class="hit">
                           <td class="line" data-tooltip>98</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // implicit throwaway</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__99" class="hit">
                           <td class="line" data-tooltip>99</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          if$ expr0 expr1</td>
+                          <td class="source">          // expr1 can&#x27;t have side effects!!!</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__100" class="hit">
                           <td class="line" data-tooltip>100</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          // but does get it&#x27;s own local context with access to top</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__101" class="hit">
                           <td class="line" data-tooltip>101</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // expr0 is truthy: true is non-nil</td>
+                          <td class="source">          // you can only change top level at the top level</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__102" class="hit">
                           <td class="line" data-tooltip>102</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          if$ expr0 expr1</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__103" class="hit">
                           <td class="line" data-tooltip>103</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // expr1 can&#x27;t have side effects!!!</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__104" class="hit">
                           <td class="line" data-tooltip>104</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // but does get it&#x27;s own local context with access to top</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__105" class="hit">
                           <td class="line" data-tooltip>105</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // you can only change top level at the top level</td>
+                          <td class="source">          if$ prev</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__106" class="hit">
                           <td class="line" data-tooltip>106</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          if$ expr0 expr1</td>
+                          <td class="source">          // indent is an implicit ()</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__107" class="hit">
                           <td class="line" data-tooltip>107</td>
@@ -3416,19 +3326,19 @@
                           <td class="line" data-tooltip>108</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          // equivs, generates: {base:string|null,name:string,}</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__109" class="hit">
                           <td class="line" data-tooltip>109</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          if$ prev</td>
+                          <td class="source">          canon: /((?&lt;base&gt;\w+)/)?(?&lt;name&gt;\w+)$/ out$.entity$  // apply a regexp</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__110" class="hit">
                           <td class="line" data-tooltip>110</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // indent is an implicit ()</td>
+                          <td class="source">          canon: out$.canon$  // recognize function, call it!</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__111" class="hit">
                           <td class="line" data-tooltip>111</td>
@@ -3440,289 +3350,289 @@
                           <td class="line" data-tooltip>112</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // equivs, generates: {base:string|null,name:string,}</td>
+                          <td class="source">          fields: string[]  // types are values! unify!</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__113" class="hit">
                           <td class="line" data-tooltip>113</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          canon: /((?&lt;base&gt;\w+)/)?(?&lt;name&gt;\w+)$/ out$.entity$  // apply a regexp</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__114" class="hit">
                           <td class="line" data-tooltip>114</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          canon: out$.canon$  // recognize function, call it!</td>
+                          <td class="source">          // get out of jail</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__115" class="hit">
                           <td class="line" data-tooltip>115</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          // lazy eval, unify passes if return val unifies</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__116" class="hit">
                           <td class="line" data-tooltip>116</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          fields: string[]  // types are values! unify!</td>
+                          <td class="source">          fields &#x3D;&gt; {</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__117" class="hit">
                           <td class="line" data-tooltip>117</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          if (prev) {</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__118" class="hit">
                           <td class="line" data-tooltip>118</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // get out of jail</td>
+                          <td class="source">          ...js as above, $ is implicit context</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__119" class="hit">
                           <td class="line" data-tooltip>119</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // lazy eval, unify passes if return val unifies</td>
+                          <td class="source">          }</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__120" class="hit">
                           <td class="line" data-tooltip>120</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          fields &#x3D;&gt; {</td>
+                          <td class="source">          }</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__121" class="hit">
                           <td class="line" data-tooltip>121</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          if (prev) {</td>
+                          <td class="source">          // NOTE: &#x3D;&gt; is lazy, : is not - as you need well-defined order of persistence ops and msg calls</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__122" class="hit">
                           <td class="line" data-tooltip>122</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          ...js as above, $ is implicit context</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__123" class="hit">
                           <td class="line" data-tooltip>123</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          }</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__124" class="hit">
                           <td class="line" data-tooltip>124</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          }</td>
+                          <td class="source">          field-keys: \ // multi line value, - in names as just valid JSON &quot;field-keys&quot;</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__125" class="hit">
                           <td class="line" data-tooltip>125</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // NOTE: &#x3D;&gt; is lazy, : is not - as you need well-defined order of persistence ops and msg calls</td>
+                          <td class="source">          keys$ data$ out$ data$ prev  // keys$ list uniq keys of objects</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__126" class="hit">
                           <td class="line" data-tooltip>126</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          // data$ is entity.data$, handles null gracefully</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__127" class="hit">
                           <td class="line" data-tooltip>127</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          // (keys$ (data$ out$) (data$ prev)) // eager function calls</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__128" class="hit">
                           <td class="line" data-tooltip>128</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          field-keys: \ // multi line value, - in names as just valid JSON &quot;field-keys&quot;</td>
+                          <td class="source">          // RHS is LISPish :)</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__129" class="hit">
                           <td class="line" data-tooltip>129</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          keys$ data$ out$ data$ prev  // keys$ list uniq keys of objects</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__130" class="hit">
                           <td class="line" data-tooltip>130</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // data$ is entity.data$, handles null gracefully</td>
+                          <td class="source">          // push$ does not push nils, eq$/3 return /3 or nil (eq$ lhs rhs yesval?true$ noval?nil)</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__131" class="hit">
                           <td class="line" data-tooltip>131</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // (keys$ (data$ out$) (data$ prev)) // eager function calls</td>
+                          <td class="source">          // eq$ is intelligent and deep - unifies?!</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__132" class="hit">
                           <td class="line" data-tooltip>132</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // RHS is LISPish :)</td>
+                          <td class="source">          // prev[field] is nil if prev is nil</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__133" class="hit">
                           <td class="line" data-tooltip>133</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          fields: $reduce field-keys [] (changed,field)&#x3D;&gt;push$ changed eq$ out$[field] prev[field] field</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__134" class="hit">
                           <td class="line" data-tooltip>134</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // push$ does not push nils, eq$/3 return /3 or nil (eq$ lhs rhs yesval?true$ noval?nil)</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__135" class="hit">
                           <td class="line" data-tooltip>135</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // eq$ is intelligent and deep - unifies?!</td>
+                          <td class="source">          // save$ implicitly async</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__136" class="hit">
                           <td class="line" data-tooltip>136</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // prev[field] is nil if prev is nil</td>
+                          <td class="source">          entver: save$ sys/entver {</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__137" class="hit">
                           <td class="line" data-tooltip>137</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          fields: $reduce field-keys [] (changed,field)&#x3D;&gt;push$ changed eq$ out$[field] prev[field] field</td>
+                          <td class="source">          ent_id: out$.id // RHS also an s-exp</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__138" class="hit">
                           <td class="line" data-tooltip>138</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          fields: fields</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__139" class="hit">
                           <td class="line" data-tooltip>139</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // save$ implicitly async</td>
+                          <td class="source">          base: canon.base</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__140" class="hit">
                           <td class="line" data-tooltip>140</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          entver: save$ sys/entver {</td>
+                          <td class="source">          name: canon.name</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__141" class="hit">
                           <td class="line" data-tooltip>141</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          ent_id: out$.id // RHS also an s-exp</td>
+                          <td class="source">          when: now$</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__142" class="hit">
                           <td class="line" data-tooltip>142</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          fields: fields</td>
+                          <td class="source">          d: data$ out$</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__143" class="hit">
                           <td class="line" data-tooltip>143</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          base: canon.base</td>
+                          <td class="source">          }</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__144" class="hit">
                           <td class="line" data-tooltip>144</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          name: canon.name</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__145" class="hit">
                           <td class="line" data-tooltip>145</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          when: now$</td>
+                          <td class="source">          // throw away result</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__146" class="hit">
                           <td class="line" data-tooltip>146</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          d: data$ out$</td>
+                          <td class="source">          : save$ sys/enthist {</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__147" class="hit">
                           <td class="line" data-tooltip>147</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          }</td>
+                          <td class="source">          ver_id: entver.id</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__148" class="hit">
                           <td class="line" data-tooltip>148</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          ent_id: out$.id</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__149" class="hit">
                           <td class="line" data-tooltip>149</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // throw away result</td>
+                          <td class="source">          fields: fields</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__150" class="hit">
                           <td class="line" data-tooltip>150</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          : save$ sys/enthist {</td>
+                          <td class="source">          base: canon.base</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__151" class="hit">
                           <td class="line" data-tooltip>151</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          ver_id: entver.id</td>
+                          <td class="source">          name: canon.name</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__152" class="hit">
                           <td class="line" data-tooltip>152</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          ent_id: out$.id</td>
+                          <td class="source">          when: entver.when</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__153" class="hit">
                           <td class="line" data-tooltip>153</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          fields: fields</td>
+                          <td class="source">          }</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__154" class="hit">
                           <td class="line" data-tooltip>154</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          base: canon.base</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__155" class="hit">
                           <td class="line" data-tooltip>155</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          name: canon.name</td>
+                          <td class="source">          // even top level is LISP really</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__156" class="hit">
                           <td class="line" data-tooltip>156</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          when: entver.when</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__157" class="hit">
                           <td class="line" data-tooltip>157</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          }</td>
+                          <td class="source">          foo: bar</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__158" class="hit">
                           <td class="line" data-tooltip>158</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          (set$ &#x27;foo&#x27; &#x27;bar&#x27;)  // where set operates on current context</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__159" class="hit">
                           <td class="line" data-tooltip>159</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // even top level is LISP really</td>
+                          <td class="source">          (set$ path expr)  // where set operates on current context</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__160" class="hit">
                           <td class="line" data-tooltip>160</td>
@@ -3734,106 +3644,82 @@
                           <td class="line" data-tooltip>161</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          foo: bar</td>
+                          <td class="source">          // NOTE: set$ performs a unify at path point</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__162" class="hit">
                           <td class="line" data-tooltip>162</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          (set$ &#x27;foo&#x27; &#x27;bar&#x27;)  // where set operates on current context</td>
+                          <td class="source">          </td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__163" class="hit">
                           <td class="line" data-tooltip>163</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          (set$ path expr)  // where set operates on current context</td>
+                          <td class="source">          // possible engines:</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__164" class="hit">
                           <td class="line" data-tooltip>164</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          // https://github.com/maryrosecook/littlelisp/blob/master/littlelisp.js</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__165" class="hit">
                           <td class="line" data-tooltip>165</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // NOTE: set$ performs a unify at path point</td>
+                          <td class="source">          // https://jcubic.github.io/lips/</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__166" class="hit">
                           <td class="line" data-tooltip>166</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          </td>
+                          <td class="source">          // https://github.com/mishoo/SLip</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__167" class="hit">
                           <td class="line" data-tooltip>167</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // possible engines:</td>
+                          <td class="source">          // http://synapticfailure.com/ai/lisp_js/</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__168" class="hit">
                           <td class="line" data-tooltip>168</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // https://github.com/maryrosecook/littlelisp/blob/master/littlelisp.js</td>
+                          <td class="source">          // http://www.joeganley.com/code/jslisp.html</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__169" class="hit">
                           <td class="line" data-tooltip>169</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // https://jcubic.github.io/lips/</td>
+                          <td class="source">          // https://calormen.com/jisp/</td>
                           
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__170" class="hit">
                           <td class="line" data-tooltip>170</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // https://github.com/mishoo/SLip</td>
-                          
+                          <td class="source">          */</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__198">198</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__171" class="hit">
                           <td class="line" data-tooltip>171</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // http://synapticfailure.com/ai/lisp_js/</td>
-                          
+                          <td class="source">    };</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__199">199</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__172" class="hit">
                           <td class="line" data-tooltip>172</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">          // http://www.joeganley.com/code/jslisp.html</td>
-                          
+                          <td class="source">}</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__200">200</a></td>
                         </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__173" class="hit">
                           <td class="line" data-tooltip>173</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">          // https://calormen.com/jisp/</td>
-                          
-                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__174" class="hit">
-                          <td class="line" data-tooltip>174</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">          */</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__205">205</a></td>
-                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__175" class="hit">
-                          <td class="line" data-tooltip>175</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    };</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__206">206</a></td>
-                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__176" class="hit">
-                          <td class="line" data-tooltip>176</td>
-                          <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">}</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__207">207</a></td>
-                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__177" class="hit">
-                          <td class="line" data-tooltip>177</td>
-                          <td class="lint empty"></td>
                           <td class="hits" data-tooltip>1</td>
                           <td class="source">exports.make_cmd_save_history_msg &#x3D; make_cmd_save_history_msg;</td>
-                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__207">207</a></td>
-                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__178" class="hit">
-                          <td class="line" data-tooltip>178</td>
+                          <td class="original-line" data-tooltip="../../lib/make_cmd_save_history_msg.ts"><a href="#../../lib/make_cmd_save_history_msg.ts__200">200</a></td>
+                        </tr>            <tr id="dist/lib/make_cmd_save_history_msg.js__174" class="hit">
+                          <td class="line" data-tooltip>174</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
                           <td class="source">//# sourceMappingURL&#x3D;make_cmd_save_history_msg.js.map</td>

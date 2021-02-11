@@ -35,7 +35,6 @@ function make_cmd_save_history_msg(options) {
                 let pv = pd[fn];
                 let ot = typeof ov;
                 let pt = typeof pv;
-                // console.log('F', fn, ov, pv, ot, pt)
                 if (null != ov || null != pv) {
                     if ('object' === ot && 'object' === pt) {
                         changed.push(fn); // TODO: proper object data equiv test
@@ -46,14 +45,12 @@ function make_cmd_save_history_msg(options) {
                 }
             });
         }
-        // console.log('SAVE HIST PREV', !!entprev, fields)
         let who = null == options.build_who
             ? {}
             : options.build_who.call(this, entprev, changed, entout, ...arguments);
         let what = null == options.build_who
             ? {}
             : options.build_what.call(this, entprev, changed, entout, ...arguments);
-        // console.log('MSG ENT CUSTOM', msg.ent.custom$)
         let histspec = {
             seneca,
             entmsg: msg.ent,
@@ -66,7 +63,6 @@ function make_cmd_save_history_msg(options) {
         // don't wait for version handling to complete, unless options.wait
         if (options.wait) {
             await intern_1.default.history(histspec);
-            // console.log('HIST DONE')
         }
         else {
             intern_1.default.history(histspec);

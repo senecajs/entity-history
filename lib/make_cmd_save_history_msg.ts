@@ -53,8 +53,6 @@ export function make_cmd_save_history_msg(options: any) {
         let ot = typeof ov
         let pt = typeof pv
 
-        // console.log('F', fn, ov, pv, ot, pt)
-
         if (null != ov || null != pv) {
           if ('object' === ot && 'object' === pt) {
             changed.push(fn) // TODO: proper object data equiv test
@@ -64,8 +62,6 @@ export function make_cmd_save_history_msg(options: any) {
         }
       })
     }
-
-    // console.log('SAVE HIST PREV', !!entprev, fields)
 
     let who: any =
       null == options.build_who
@@ -77,8 +73,6 @@ export function make_cmd_save_history_msg(options: any) {
         ? {}
         : options.build_what.call(this, entprev, changed, entout, ...arguments)
 
-
-    // console.log('MSG ENT CUSTOM', msg.ent.custom$)
 
     let histspec = {
       seneca,
@@ -93,7 +87,6 @@ export function make_cmd_save_history_msg(options: any) {
     // don't wait for version handling to complete, unless options.wait
     if (options.wait) {
       await intern.history(histspec)
-      // console.log('HIST DONE')
     }
     else {
       intern.history(histspec)

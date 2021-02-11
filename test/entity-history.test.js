@@ -20,7 +20,11 @@ lab.test('plugin-load', async () => {
 
 lab.test('happy', async () => {
   var seneca = seneca_instance(null, {
+
+    // Apply history to these ents.
     ents: ['base:zed'],
+    
+    // built-ins to create version entry fields
     build_who: (prev, fields, ent, msg, meta) => ({
       name: meta.custom.name,
     }),
@@ -30,18 +34,26 @@ lab.test('happy', async () => {
   })
 
   await seneca.ready()
-  // console.log(seneca.find('sys:entity,cmd:save,base:zed'))
+
+  
+  // Save a new entity.
 
   let b01 = await seneca
-    .entity('zed/bar', { x: 1, y: 'Y1', rtag: 'r01' })
+      .entity('zed/bar', { id$:'b01', x: 1, y: 'Y1', rtag: 'r01' })
     .save$()
 
-  await seneca.ready() // history saving is parallel
+  
+  // History saving is parallel, so wait for it to complete.
+
+  await seneca.ready() 
+
+
+  
+  // Entity history stored in sys/entver.
+
   let hl0 = await seneca.post('sys:entity,rig:history,entity:history', {
     ent: b01,
   })
-  // console.log('hl0', hl0)
-
   expect(hl0.ok).true
   expect(hl0.items.length).equal(1)
   expect(hl0.items[0]).includes({
@@ -56,15 +68,21 @@ lab.test('happy', async () => {
     what: { title: 1 },
   })
 
+
+  // Make a change.
+
   b01.x = 2
   b01.rtag = 'r02'
   await b01.save$()
 
-  await seneca.ready() // history saving is parallel
+  await seneca.ready() 
   let hl1 = await seneca.post('sys:entity,rig:history,entity:history', {
     ent: b01,
   })
-  // console.log('hl1', hl1)
+
+  
+  // History now includes changes.
+
   expect(hl1.ok).true
   expect(hl1.items.length).equal(2)
   expect(hl1.items[0].when).above(hl1.items[1].when) // reverse time order
@@ -88,17 +106,19 @@ lab.test('happy', async () => {
   })
 
   let v0 = hl1.items[1]
-  // console.log(v0)
+
+  
+  // Restore the initial version.
 
   let res0 = await seneca.post('sys:entity,rig:history,entity:restore', {
     ent: {
       ent_id: v0.ent_id,
-      ver_id: v0.ver_id,
+      ver_id: v0.id,
       base: 'zed',
       name: 'bar',
     },
   })
-  // console.log(res0)
+
   expect(res0.ok).true()
   expect(res0.item).includes({
     x: 1,
@@ -106,16 +126,20 @@ lab.test('happy', async () => {
     rtag: 'r01',
   })
 
+
+  // Load normally to verify we're back to initial version.
+
   let b01r = await seneca.entity('zed/bar').load$(b01.id)
-  // console.log(b01r)
   expect(b01r).includes({ x: 1, y: 'Y1', rtag: 'r01' })
 
-  await seneca.ready() // history saving is parallel
+  
+  // History now contains a new entry (by design).
+
+  await seneca.ready()
   let hl2 = await seneca.post('sys:entity,rig:history,entity:history', {
     ent: b01,
     data: true,
   })
-  //console.dir(hl2,{depth:null})
   expect(hl2.items.length).equal(3)
   expect(hl2.items[0]).includes({
     ent_rtag: 'r01',
@@ -127,6 +151,7 @@ lab.test('happy', async () => {
     is_restore: true,
   })
 })
+
 
 lab.test('messages', async () => {
   var seneca = await seneca_instance(null, {

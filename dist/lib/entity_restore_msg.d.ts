@@ -8,5 +8,5 @@ export declare function entity_restore_msg(msg: {
     };
 }): Promise<{
     ok: boolean;
-    item: {};
+    item: any;
 }>;
