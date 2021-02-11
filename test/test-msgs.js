@@ -45,15 +45,17 @@ module.exports = {
       },
       out: {
         ok: true,
-        items: [{
-          ent_id: 'f01',
-          c_version: 0,
-          prev_ver_id: '',
-          fields: [],
-          changed: [],
-          base: 'zed',
-          name: 'foo'
-        }],
+        items: [
+          {
+            ent_id: 'f01',
+            c_version: 0,
+            prev_ver_id: '',
+            fields: [],
+            changed: [],
+            base: 'zed',
+            name: 'foo',
+          },
+        ],
       },
     }),
 
@@ -134,7 +136,7 @@ module.exports = {
     }),
 
     // { print:true, pattern: 'role:mem-store,cmd:dump' },
-    
+
     // load by current version
     LN({
       // print: true,
@@ -149,11 +151,10 @@ module.exports = {
       out: {
         ok: true,
         item: { entity$: '-/zed/foo', x: 2, y: 'y01', id: 'f01' },
-        entver: { is_finder: true, id: 'f01' }
+        entver: { is_finder: true, id: 'f01' },
       },
     }),
 
-    
     LN({
       // print: true,
       pattern: 'entity:load',
@@ -206,8 +207,20 @@ module.exports = {
       out: {
         ok: true,
         items: [
-          { ent_id: 'f01', fields: ['x'], changed: ['x'], base: 'zed', name: 'foo' },
-          { ent_id: 'f01', fields: ['x'], changed: ['x'], base: 'zed', name: 'foo' },
+          {
+            ent_id: 'f01',
+            fields: ['x'],
+            changed: ['x'],
+            base: 'zed',
+            name: 'foo',
+          },
+          {
+            ent_id: 'f01',
+            fields: ['x'],
+            changed: ['x'],
+            base: 'zed',
+            name: 'foo',
+          },
           { ent_id: 'f01', fields: [], changed: [], base: 'zed', name: 'foo' },
         ],
       },
@@ -231,8 +244,20 @@ module.exports = {
       out: {
         ok: true,
         items: [
-          { ent_id: 'f01', fields: ['x'], changed: [], base: 'zed', name: 'foo' },
-          { ent_id: 'f01', fields: ['x'], changed: [], base: 'zed', name: 'foo' },
+          {
+            ent_id: 'f01',
+            fields: ['x'],
+            changed: [],
+            base: 'zed',
+            name: 'foo',
+          },
+          {
+            ent_id: 'f01',
+            fields: ['x'],
+            changed: [],
+            base: 'zed',
+            name: 'foo',
+          },
         ],
         changed: ['x'],
         fields: ['x'],

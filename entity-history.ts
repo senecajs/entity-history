@@ -45,4 +45,3 @@ function entity_history(options: any) {
     name: 'entity-history',
   }
 }
-

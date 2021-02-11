@@ -20,10 +20,9 @@ lab.test('plugin-load', async () => {
 
 lab.test('happy', async () => {
   var seneca = seneca_instance(null, {
-
     // Apply history to these ents.
     ents: ['base:zed'],
-    
+
     // built-ins to create version entry fields
     build_who: (prev, fields, ent, msg, meta) => ({
       name: meta.custom.name,
@@ -35,20 +34,16 @@ lab.test('happy', async () => {
 
   await seneca.ready()
 
-  
   // Save a new entity.
 
   let b01 = await seneca
-      .entity('zed/bar', { id$:'b01', x: 1, y: 'Y1', rtag: 'r01' })
+    .entity('zed/bar', { id$: 'b01', x: 1, y: 'Y1', rtag: 'r01' })
     .save$()
 
-  
   // History saving is parallel, so wait for it to complete.
 
-  await seneca.ready() 
+  await seneca.ready()
 
-
-  
   // Entity history stored in sys/entver.
 
   let hl0 = await seneca.post('sys:entity,rig:history,entity:history', {
@@ -68,19 +63,17 @@ lab.test('happy', async () => {
     what: { title: 1 },
   })
 
-
   // Make a change.
 
   b01.x = 2
   b01.rtag = 'r02'
   await b01.save$()
 
-  await seneca.ready() 
+  await seneca.ready()
   let hl1 = await seneca.post('sys:entity,rig:history,entity:history', {
     ent: b01,
   })
 
-  
   // History now includes changes.
 
   expect(hl1.ok).true
@@ -99,7 +92,7 @@ lab.test('happy', async () => {
     ent_id: b01.id,
     base: 'zed',
     name: 'bar',
-    fields: [ 'x', 'y', 'rtag', 'id' ],
+    fields: ['x', 'y', 'rtag', 'id'],
     changed: [],
     ent_rtag: 'r01',
     prev_rtag: '',
@@ -107,7 +100,6 @@ lab.test('happy', async () => {
 
   let v0 = hl1.items[1]
 
-  
   // Restore the initial version.
 
   let res0 = await seneca.post('sys:entity,rig:history,entity:restore', {
@@ -126,13 +118,11 @@ lab.test('happy', async () => {
     rtag: 'r01',
   })
 
-
   // Load normally to verify we're back to initial version.
 
   let b01r = await seneca.entity('zed/bar').load$(b01.id)
   expect(b01r).includes({ x: 1, y: 'Y1', rtag: 'r01' })
 
-  
   // History now contains a new entry (by design).
 
   await seneca.ready()
@@ -144,14 +134,13 @@ lab.test('happy', async () => {
   expect(hl2.items[0]).includes({
     ent_rtag: 'r01',
     prev_rtag: 'r02',
-    fields: [ 'x', 'y', 'rtag', 'id' ],
-    changed: [ 'x', 'rtag' ],
+    fields: ['x', 'y', 'rtag', 'id'],
+    changed: ['x', 'rtag'],
     base: 'zed',
     name: 'bar',
     is_restore: true,
   })
 })
-
 
 lab.test('messages', async () => {
   var seneca = await seneca_instance(null, {
