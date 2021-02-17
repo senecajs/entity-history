@@ -4,6 +4,8 @@
 
 /* $lab:coverage:on$ */
 
+// TODO: options.ents should support zone/base/name canons
+
 import Doc from './entity-history-doc'
 
 import { entity_history_msg } from './lib/entity_history_msg'

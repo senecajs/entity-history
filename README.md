@@ -14,6 +14,13 @@ Version history for entities
 |---|---|
 
 
+
+# Notes
+
+* `is_finder:true` field in sys/entver allows current version details to be loaded directly. Thus there is always one more entry than the actual number of versions.
+
+
+
 <!--START:options-->
 
 

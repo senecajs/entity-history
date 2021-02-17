@@ -6,6 +6,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /* $lab:coverage:on$ */
+// TODO: options.ents should support zone/base/name canons
 const entity_history_doc_1 = __importDefault(require("./entity-history-doc"));
 const entity_history_msg_1 = require("./lib/entity_history_msg");
 const entity_restore_msg_1 = require("./lib/entity_restore_msg");
