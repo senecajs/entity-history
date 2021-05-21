@@ -5,6 +5,7 @@
 /* $lab:coverage:on$ */
 
 
+// load specific version
 export async function entity_load_msg(msg: {
   ent: {
     // version id; if null, load current
@@ -38,6 +39,7 @@ export async function entity_load_msg(msg: {
       ent_id: msg.ent.ent_id || msg.ent.id,
 
       // load current if version not specified
+      // NOTE: the finder uses the original ent id
       id: msg.ent.ver_id || msg.ent.ent_id || msg.ent.id,
 
       base: msg.ent.base,

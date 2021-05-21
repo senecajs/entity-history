@@ -60,8 +60,12 @@ function make_cmd_save_history_msg(options) {
             who,
             what,
         };
+        let wait = options.wait ||
+            (ent.history$ && ent.history$.wait) ||
+            (ent.custom$ && ent.custom$.history && ent.custom$.history.wait);
+        console.log('ENT HIST WAIT', wait, ent.history$, ent.custom$);
         // don't wait for version handling to complete, unless options.wait
-        if (options.wait) {
+        if (wait) {
             await intern_1.default.history(histspec);
         }
         else {

@@ -17,6 +17,9 @@ export function make_cmd_save_history_msg(options: any) {
         entity$: string
         load$: any
         custom$: any
+        history$: {
+          wait: boolean
+        }
       }
     },
     meta: any
@@ -84,8 +87,13 @@ export function make_cmd_save_history_msg(options: any) {
       what,
     }
 
+    let wait = options.wait ||
+      (ent.history$ && ent.history$.wait) ||
+      (ent.custom$ && ent.custom$.history && ent.custom$.history.wait)
+    console.log('ENT HIST WAIT', wait, ent.history$, ent.custom$)
+
     // don't wait for version handling to complete, unless options.wait
-    if (options.wait) {
+    if (wait) {
       await intern.history(histspec)
     }
     else {

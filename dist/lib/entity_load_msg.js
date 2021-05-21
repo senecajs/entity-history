@@ -4,6 +4,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.entity_load_msg = void 0;
 /* $lab:coverage:on$ */
+// load specific version
 async function entity_load_msg(msg) {
     let seneca = this;
     // shortcut for repl use
@@ -22,6 +23,7 @@ async function entity_load_msg(msg) {
         entverq: {
             ent_id: msg.ent.ent_id || msg.ent.id,
             // load current if version not specified
+            // NOTE: the finder uses the original ent id
             id: msg.ent.ver_id || msg.ent.ent_id || msg.ent.id,
             base: msg.ent.base,
             name: msg.ent.name,
