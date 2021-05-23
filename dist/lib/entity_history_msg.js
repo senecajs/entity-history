@@ -50,7 +50,7 @@ async function entity_history_msg(msg) {
     if (diff && diff.ver_id) {
         work.diff_ent = await seneca.entity('sys/entver').load$({
             id: diff.ver_id,
-            fields$: intern_1.default.entver_fields,
+            fields$: intern_1.default.entver_fields, // don't load data field `d`
         });
         if (null == work.diff_ent) {
             seneca.fail('diff-entity-not-found');

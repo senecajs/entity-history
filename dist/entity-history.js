@@ -16,7 +16,7 @@ module.exports = entity_history;
 module.exports.defaults = {
     ents: [],
     build_who: null,
-    wait: false,
+    wait: false, // wait for history to save before returning
 };
 module.exports.errors = {};
 module.exports.doc = entity_history_doc_1.default;

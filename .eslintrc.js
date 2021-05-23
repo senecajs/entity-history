@@ -7,7 +7,7 @@ module.exports = {
     ecmaVersion: 8
   },
   rules: {
-    'no-console': 0,
+    'no-console': 2,
     'no-unused-vars': ['error', { 'args': 'none' }],
   },
   globals: {
