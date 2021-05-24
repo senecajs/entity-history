@@ -38,8 +38,13 @@ export function make_cmd_save_history_msg(options: any) {
     // let entprev = null == ent.id ? null : await ent.load$(ent.id)
     let entprev = await ent.load$(ent.id)
 
-    let entout = await this.prior(msg, meta)
+    // Return this entity.
+    let orig_entout = await this.prior(msg, meta)
 
+    // Snapshot: use this to generate version.
+    let entout = orig_entout.clone$()
+
+    
     let changed: string[] = [] // changed fields
 
     if (entprev) {
@@ -87,6 +92,7 @@ export function make_cmd_save_history_msg(options: any) {
       what,
     }
 
+
     let wait = options.wait ||
       (ent.history$ && ent.history$.wait) ||
       (ent.custom$ && ent.custom$.history && ent.custom$.history.wait)
@@ -100,8 +106,9 @@ export function make_cmd_save_history_msg(options: any) {
     }
 
 
-
-    return entout
+    // NOTE: return the original, which may be safely changed by calling code, since
+    // it is not used to create the version later (if not waiting).
+    return orig_entout
 
     /*
       

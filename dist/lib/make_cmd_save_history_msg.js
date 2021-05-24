@@ -22,7 +22,10 @@ function make_cmd_save_history_msg(options) {
         // TODO seneca-entity should return null, thus removing need for ?:
         // let entprev = null == ent.id ? null : await ent.load$(ent.id)
         let entprev = await ent.load$(ent.id);
-        let entout = await this.prior(msg, meta);
+        // Return this entity.
+        let orig_entout = await this.prior(msg, meta);
+        // Snapshot: use this to generate version.
+        let entout = orig_entout.clone$();
         let changed = []; // changed fields
         if (entprev) {
             let od = entout.data$(false);
@@ -70,7 +73,9 @@ function make_cmd_save_history_msg(options) {
         else {
             intern_1.default.history(histspec);
         }
-        return entout;
+        // NOTE: return the original, which may be safely changed by calling code, since
+        // it is not used to create the version later (if not waiting).
+        return orig_entout;
         /*
           
           # sys:entity,cmd:save
